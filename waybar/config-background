@@ -35,7 +35,6 @@
     "custom/power"
   ],
 
-
     // Load Modules
     "include": ["~/.config/waybar/modules-background.json"],
 

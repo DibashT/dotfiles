@@ -69,6 +69,30 @@ alias ..='cd ..'
 lvim() {
     NVIM_APPNAME=lazyvim nvim "$@"
 }
+# mkcd: make directory and cd into it
+mkcd() {
+    mkdir -p "$@" && cd "$1"
+}
+
+# --- YT-DLP ---
+function transmogstring()
+{
+out=$1
+foreach tr (invidious.instances.go.here separated.by.spaces)
+do out=${out/${~tr}/youtu.be}
+done
+echo $out
+}
+function yd()
+{
+tmtext=$(transmogstring $1)
+yt-dlp --sub-langs all,-live_chat --embed-subs --embed-chapters --progress --no-mtime --paths home:~/Downloads $tmtext
+}
+function yd1080p()
+{
+tmtext=$(transmogstring $1)
+yt-dlp -f 'bv*[height<=1080]+ba' --sub-langs all,-live_chat --embed-subs --embed-chapters --progress --no-mtime --paths home:~/Downloads $tmtext
+}
 
 # --- PYENV ---
 export PYENV_ROOT="$HOME/.pyenv"
