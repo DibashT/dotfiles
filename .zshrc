@@ -11,6 +11,7 @@ path=(
   "$HOME/bin"
   "$HOME/.local/bin"
   "$HOME/.npm-global/bin"
+  "$HOME/.cargo/bin"
   "/usr/local/bin"
   $path
 )
@@ -73,6 +74,7 @@ lvim() {
 mkcd() {
     mkdir -p "$@" && cd "$1"
 }
+alias pip='python3 -m pip'
 
 # --- YT-DLP ---
 function transmogstring()
@@ -101,5 +103,3 @@ export PYENV_ROOT="$HOME/.pyenv"
 
 eval "$(pyenv init -)"
 # --- PIP ALIAS ---
-alias pip='python3 -m pip'
-export PATH="$HOME/.npm-global/bin:$PATH"
