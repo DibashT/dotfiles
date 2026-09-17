@@ -24,11 +24,7 @@
     select_current_song_on_change: false,
     ignore_leading_the: false,
     browser_song_sort: [Disc, Track, Artist, Title],
-    //directories_sort: SortFormat(group_by_type: true, reverse: true),
-    directories_sort: ModifiedTime(
-        group_by_type: true,
-        reverse: true,
-    ),
+    directories_sort: SortFormat(group_by_type: true, reverse: true),
     auto_open_downloads: true,
     album_art: (
         method: Auto,
@@ -158,7 +154,7 @@
                     // LEFT: MUSIC QUEUE 60%
                     // =========================
                     (
-                        size: "70%",
+                        size: "60%",
                         pane: Split(
                             direction: Vertical,
                             panes: [
@@ -213,31 +209,30 @@
                     // RIGHT: ALBUM ART 40%
                     // =========================
                     (
-                        size: "30%",
+                        size: "40%",
                         pane: Split(
                             direction: Vertical,
                             panes: [
                                 (
                                     size: "100%",
                                     borders: "LEFT | RIGHT | TOP",
-                                    //borders: "ALL",
                                     border_symbols: Rounded,
                                     pane: Pane(AlbumArt)
                                 ),
 
                                 // Lyrics disabled
-                                 (
-                                     size: "7",
-                                     borders: "ALL",
-                                     border_symbols: Inherited(
-                                         parent: Rounded,
-                                         top_left: "├",
-                                         top_right: "┤",
-                                     ),
-                                     border_title: [(kind: Text(" Lyrics "))],
-                                     border_title_alignment: Right,
-                                     pane: Pane(Lyrics)
-                                 ),
+                                // (
+                                //     size: "7",
+                                //     borders: "ALL",
+                                //     border_symbols: Inherited(
+                                //         parent: Rounded,
+                                //         top_left: "├",
+                                //         top_right: "┤",
+                                //     ),
+                                //     border_title: [(kind: Text(" Lyrics "))],
+                                //     border_title_alignment: Right,
+                                //     pane: Pane(Lyrics)
+                                // ),
                             ],
                         ),
                     ),
