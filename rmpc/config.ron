@@ -4,7 +4,8 @@
 (
     address: "127.0.0.1:6600",
     password: None,
-    theme: Some("~/.config/rmpc/themes/theme.ron"),
+    //theme: Some("~/.config/rmpc/themes/theme.ron"),
+    theme: Some("theme.ron"),
     cache_dir: Some("~/Music/rmpc-cache"),
     lyrics_dir: Some("~/Music/lyrics"),
     on_song_change: None,
@@ -219,21 +220,21 @@
                             panes: [
                                 (
                                     size: "100%",
-                                    borders: "LEFT | RIGHT | TOP",
-                                    //borders: "ALL",
+                                    //borders: "LEFT | RIGHT | TOP",
+                                    borders: "ALL",
                                     border_symbols: Rounded,
                                     pane: Pane(AlbumArt)
                                 ),
-
-                                // Lyrics disabled
+                                // Lyrics enabled
                                  (
                                      size: "7",
                                      borders: "ALL",
-                                     border_symbols: Inherited(
-                                         parent: Rounded,
-                                         top_left: "├",
-                                         top_right: "┤",
-                                     ),
+                                    // border_symbols: Inherited(
+                                    //     parent: Rounded,
+                                    //     top_left: "├",
+                                    //     top_right: "┤",
+                                    // ),
+                                     border_symbols: Rounded,
                                      border_title: [(kind: Text(" Lyrics "))],
                                      border_title_alignment: Right,
                                      pane: Pane(Lyrics)
