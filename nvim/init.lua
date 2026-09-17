@@ -24,18 +24,18 @@ vim.o.completeopt = "menuone,noinsert,noselect" -- Completion options
 vim.o.spelllang = "en"                          -- spell check
 vim.o.confirm = true                            -- Raise dialog in unsaved buffer
 -- vim.opt.colorcolumn = "80"                      -- show column at 80 position char
-vim.o.updatetime = 250                          -- Snapy key
-vim.o.timeoutlen = 300                          --balance speed
-vim.o.ttimeoutlen = 1                           --fast timesout sequence (ESC)
-vim.o.splitright = true                         -- Window split
+vim.o.updatetime = 200
+vim.o.timeoutlen = 300
+vim.o.ttimeoutlen = 10
+vim.o.splitright = true              -- Window split
 vim.o.splitbelow = true
-vim.o.undofile = true                           --Persistent undo
-vim.o.undolevels = 10000                        --allows to safely travesre  much further
+vim.o.undofile = true                --Persistent undo
+vim.o.undolevels = 10000             --allows to safely travesre  much further
 -- vim.o.selection = "inclusive"                   --Use inclusive selection
-vim.o.wildmode = "longest:full,full"            --Completion mode for command-line
-vim.o.wildignorecase = true                     --Case-sensitive tab completion in commands
+vim.o.wildmode = "longest:full,full" --Completion mode for command-line
+vim.o.wildignorecase = true          --Case-sensitive tab completion in commands
 vim.o.splitkeep =
-'screen'                                        --prevents the text from jarringly shifting around when you open horizontal splits or floating windows.
+'screen'                             --prevents the text from jarringly shifting around when you open horizontal splits or floating windows.
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.swapfile = false --Disable swap file to prevent annoying errors
@@ -145,7 +145,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
---https://echasnovski.com/blog/2026-03-13-a-guide-to-vim-pack#update
+vim.loader.enable()
+
 vim.pack.add({
   'https://github.com/ibhagwan/fzf-lua',
   {
@@ -153,9 +154,7 @@ vim.pack.add({
     branch = main,
     build = ":TSUpdate",
   },
-  -- Dependencies are flatly listed in their required loading order
   'https://github.com/mason-org/mason.nvim',
-  -- 'https://github.com/mason-org/mason-lspconfig.nvim',
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/mfussenegger/nvim-dap',
   'https://github.com/stevearc/oil.nvim',
@@ -166,7 +165,6 @@ vim.pack.add({
   'https://github.com/nvim-tree/nvim-web-devicons',
   { src = 'https://github.com/saghen/blink.cmp',             version = vim.version.range('1.x') },
   'https://github.com/nvim-lualine/lualine.nvim',
-  --Mini stable --
   { src = 'https://github.com/echasnovski/mini.ai',          version = 'stable' },
   { src = 'https://github.com/echasnovski/mini.comment',     version = 'stable' },
   { src = 'https://github.com/echasnovski/mini.move',        version = 'stable' },
@@ -175,15 +173,18 @@ vim.pack.add({
   { src = 'https://github.com/echasnovski/mini.pairs',       version = 'stable' },
   { src = 'https://github.com/echasnovski/mini.bufremove',   version = 'stable' },
   { src = 'https://github.com/echasnovski/mini.notify',      version = 'stable' },
-  -- Non-GitHub URLs
-  -- 'https://codeberg.org/andyg/leap.nvim.git',
-  -- color scheme
   'https://github.com/rebelot/kanagawa.nvim',
   { src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
   'https://github.com/vague-theme/vague.nvim',
 })
 
-require("mason").setup()
+require("mason").setup({
+  ui = {
+    border = "rounded",
+    width = 0.8,
+    height = 0.8,
+  },
+})
 
 --Kanagawa apply after 0.12
 require('kanagawa').setup({
@@ -226,65 +227,37 @@ local setup_treesitter = function()
   local treesitter = require("nvim-treesitter")
   treesitter.setup({})
   local ensure_installed = {
-    "vim",
-    "vimdoc",
-    "query",
-    "rust",
-    "c",
-    "cpp",
-    "c_sharp",
-    "go",
-    "html",
-    "css",
-    "javascript",
-    "typescript",
-    "tsx",
-    "vue",
-    "svelte",
-    "json",
-    "yaml",
-    "toml",
-    "xml",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "python",
-    "bash",
-    "dockerfile",
-    "make",
-    "regex",
-    "git_config",
-    "gitcommit",
-    "gitignore",
-    "git_rebase",
+    "vim", "vimdoc", "query", "rust", "c", "cpp", "c_sharp", "go",
+    "html", "css", "javascript", "typescript", "tsx", "vue", "svelte",
+    "json", "yaml", "toml", "xml", "lua", "markdown", "markdown_inline",
+    "python", "bash", "dockerfile", "make", "regex",
+    "git_config", "gitcommit", "gitignore", "git_rebase",
   }
 
   local config = require("nvim-treesitter.config")
-
   local already_installed = config.get_installed()
-  local parsers_to_install = {}
-
-  for _, parser in ipairs(ensure_installed) do
-    if not vim.tbl_contains(already_installed, parser) then
-      table.insert(parsers_to_install, parser)
-    end
-  end
+  local parsers_to_install = vim.tbl_filter(
+    function(parser) return not vim.tbl_contains(already_installed, parser) end,
+    ensure_installed
+  )
 
   if #parsers_to_install > 0 then
-    treesitter.install(parsers_to_install)
+    vim.defer_fn(function() treesitter.install(parsers_to_install) end, 100)
   end
 
   local group = vim.api.nvim_create_augroup("TreeSitterConfig", { clear = true })
   vim.api.nvim_create_autocmd("FileType", {
     group = group,
     callback = function(args)
-      if vim.list_contains(config.get_installed(), vim.treesitter.language.get_lang(args.match)) then
+      local lang = vim.treesitter.language.get_lang(args.match)
+      if lang and vim.list_contains(config.get_installed(), lang) then
         vim.treesitter.start(args.buf)
       end
     end,
   })
 end
-setup_treesitter()
+
+vim.defer_fn(setup_treesitter, 50)
 
 -- Statusline (Lualine)
 require("lualine").setup({
@@ -296,31 +269,43 @@ require("lualine").setup({
 })
 
 -- Markdown
-require("render-markdown").setup({})
+require("render-markdown").setup({
+  render_modes = { 'n', 'c' },
+  anti_conceal = { enabled = false },
+})
 
 -- Mini Plugins
 require("mini.ai").setup({})
 require("mini.comment").setup({})
 require("mini.move").setup({})
 require("mini.surround").setup({})
-require("mini.indentscope").setup({})
+require("mini.indentscope").setup({
+  draw = { delay = 0, animation = function() return 0 end },
+})
 require("mini.pairs").setup({})
 require("mini.bufremove").setup({})
 require("mini.notify").setup({})
 
---Fzf-lua
 require("fzf-lua").setup({
   fzf_colors = true,
-  -- Imported the custom ripgrep options for better search match highlighting
+  winopts = {
+    height = 0.95,
+    width = 0.90,
+    preview = {
+      default = "bat",
+      delay = 50,
+      winopts = { number = false },
+    },
+  },
+  files = {
+    formatter = "path.filename_first",
+    git_icons = false,
+    file_icons = false,
+  },
   grep = {
-    rg_opts = table.concat({
-      "--column --line-number --no-heading --color=always --smart-case --max-columns=4096",
-      -- "--colors 'path:none'",
-      -- "--colors 'line:none'",
-      -- "--colors 'column:none'",
-      -- "--colors 'match:fg:225,255,229'",
-      "-e",
-    }, " "),
+    rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
+    git_icons = false,
+    file_icons = false,
   },
   ui_select = true,
   keymap = {
@@ -328,13 +313,6 @@ require("fzf-lua").setup({
       ["<C-d>"] = "preview-page-down",
       ["<C-u>"] = "preview-page-up",
     },
-  },
-  winopts = {
-    height = 0.95, -- window height
-    width = 0.90,  -- window width
-  },
-  files = {
-    formatter = "path.filename_first",
   },
 })
 vim.keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find files" })
@@ -391,11 +369,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 --Blink
 require('blink.cmp').setup({
+  keymap = { preset = 'default' },
+  appearance = {
+    use_nvim_cmp_as_default = true,
+    nerd_font_variant = 'mono'
+  },
   signature = {
     enabled = true,
-    window = {
-      show_documentation = false,
-      border = "rounded",
+    window = { border = "rounded" },
+  },
+  completion = {
+    list = {
+      selection = { preselect = true, auto_insert = true }
+    },
+    menu = {
+      border = 'rounded',
+      draw = {
+        treesitter = { 'lsp' },
+      },
+    },
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 200,
+      window = { border = 'rounded' },
     },
   },
 })
