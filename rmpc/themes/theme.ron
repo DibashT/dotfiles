@@ -62,6 +62,23 @@
     lyrics: (
         timestamp: false
     ),
+    cava: (
+        bar_symbols: ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
+        bar_width: 2,
+        bar_spacing: 1,
+        orientation: Bottom,
+        // Rose Pine x Kanagawa party mix: green -> blue -> violet -> pink -> gold -> red
+        bar_color: Gradient({
+            0: "#98bb6c",
+            20: "#7fb4ca",
+            35: "#7e9cd8",
+            50: "#957fb8",
+            65: "#c4a7e7",
+            80: "#ebbcba",
+            90: "#f6c177",
+            100: "#eb6f92",
+        }),
+    ),
     browser_song_format: [
         (
             kind: Group([
@@ -131,19 +148,19 @@
                         (
                             size: "35",
                             borders: "LEFT | TOP | BOTTOM",
-                            border_symbols: Inherited(parent: Rounded, bottom_left: "├"),
+                            border_symbols: Inherited(parent: Thick, bottom_left: "┣"),
                             pane: Component("header_left")
                         ),
                         (
                             size: "100%",
                             borders: "ALL",
-                            border_symbols: Inherited(parent: Rounded, top_left: "┬", top_right: "┬", bottom_left: "┴", bottom_right: "┴"),
+                            border_symbols: Inherited(parent: Thick, top_left: "┳", top_right: "┳", bottom_left: "┻", bottom_right: "┻"),
                             pane: Component("header_center")
                         ),
                         (
                             size: "35",
                             borders: "RIGHT | TOP | BOTTOM",
-                            border_symbols: Inherited(parent: Rounded, bottom_right: "┤"),
+                            border_symbols: Inherited(parent: Thick, bottom_right: "┫"),
                             pane: Component("header_right")
                         ),
                     ]
@@ -152,7 +169,7 @@
             (
                 pane: Pane(Tabs),
                 borders: "RIGHT | LEFT | BOTTOM",
-                border_symbols: Rounded,
+                border_symbols: Thick,
                 size: "2",
             ),
             (
@@ -167,13 +184,13 @@
                         (
                             size: "12",
                             borders: "ALL",
-                            border_symbols: Inherited(parent: Rounded, top_right: "┬", bottom_right: "┴"),
+                            border_symbols: Inherited(parent: Thick, top_right: "┳", bottom_right: "┻"),
                             pane: Component("input_mode")
                         ),
                         (
                             size: "100%",
                             borders: "TOP | BOTTOM | RIGHT",
-                            border_symbols: Rounded,
+                            border_symbols: Thick,
                             border_title: [(kind: Text(" ")), (kind: Property(Status(QueueLength()))), (kind: Text(" songs / ")), (kind: Property(Status(QueueTimeTotal()))), (kind: Text(" total time "))],
                             border_title_alignment: Right,
                             pane: Component("progress_bar"),
