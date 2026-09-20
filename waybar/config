@@ -13,7 +13,7 @@
     "tray",
     "sway/window",
     "sway/mode",
-    "custom/cava-internal",
+    //"custom/cava-internal",
     "mpd#2",
     "mpd#3",
     "mpd#4",

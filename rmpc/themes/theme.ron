@@ -15,7 +15,7 @@
     highlighted_item_style: (fg: "#7fb4ca", modifiers: "Bold"),
     current_item_style: (fg: "#191724", bg: "#7fb4ca", modifiers: "Bold"),
     borders_style: (fg: "#6e6a86"),
-    highlight_border_style: (fg: "#7fb4ca", modifiers: "Bold"),
+    highlight_border_style: (fg: "#6e6a86"),
     symbols: (
         song: "",
         dir: "",
@@ -103,11 +103,10 @@
                     kind: Text("Unknown")
                 )
             ),
-            style: (fg: "#7fb4ca", modifiers: "Bold"),
             label_prop: (
                 kind: Text("Title")
             ),
-            width: "55%",
+            width: "45%",
         ),
         (
             prop: (
@@ -116,11 +115,10 @@
                     kind: Text("Unknown")
                 )
             ),
-            style: (fg: "#ebbcba"),
             label_prop: (
                 kind: Text("Artist")
             ),
-            width: "30%",
+            width: "35%",
         ),
         (
             prop: (
@@ -129,11 +127,10 @@
                     kind: Text("-")
                 )
             ),
-            style: (fg: "#c4a7e7"),
             label_prop: (
                 kind: Text("Duration")
             ),
-            width: "15%",
+            width: "20%",
             alignment: Right,
         ),
     ],

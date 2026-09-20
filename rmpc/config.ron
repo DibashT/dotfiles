@@ -177,14 +177,7 @@
             pane: Split(
                 direction: Horizontal,
                 panes: [
-                    // Left outer gap so borders don't touch screen edge
-                    (
-                        size: "1",
-                        pane: Pane(Empty())
-                    ),
-                    // =========================
-                    // LEFT: MUSIC QUEUE 60%
-                    // =========================
+                    // LEFT: MUSIC QUEUE 70%
                     (
                         size: "70%",
                         pane: Split(
@@ -193,64 +186,23 @@
                                 // Queue header - borderless sides, floating top/bottom
                                 (
                                     size: "3",
-                                    //borders: "ALL",
                                     borders: "TOP | BOTTOM",
                                     border_symbols: Thick,
-                                    pane: Split(
-                                        direction: Horizontal,
-                                        panes: [
-                                            (
-                                                size: "2",
-                                                pane: Pane(Empty())
-                                            ),
-                                            (
-                                                size: "100%",
-                                                pane: Pane(QueueHeader())
-                                            ),
-                                            (
-                                                size: "1",
-                                                pane: Pane(Empty())
-                                            ),
-                                        ]
-                                    )
+                                    pane: Pane(QueueHeader())
                                 ),
 
                                 // Queue - borderless sides, only bottom line
                                 (
                                     size: "100%",
-                                    //borders: "LEFT | RIGHT | BOTTOM",
                                     borders: "BOTTOM",
                                     border_symbols: Thick,
-                                    pane: Split(
-                                        direction: Horizontal,
-                                        panes: [
-                                            (
-                                                size: "2",
-                                                pane: Pane(Empty())
-                                            ),
-                                            (
-                                                size: "100%",
-                                                pane: Pane(Queue)
-                                            ),
-                                            (
-                                                size: "1",
-                                                pane: Pane(Empty())
-                                            ),
-                                        ]
-                                    )
+                                    pane: Pane(Queue)
                                 ),
                             ],
                         ),
                     ),
-                    // Gap so queue lines don't touch Cover - slimmed to 1
-                    (
-                        size: "1",
-                        pane: Pane(Empty())
-                    ),
 
-                    // =========================
-                    // RIGHT: ALBUM ART 40%
-                    // =========================
+                    // RIGHT: ALBUM ART 30%
                     (
                         size: "30%",
                         pane: Split(
@@ -258,31 +210,19 @@
                             panes: [
                                 (
                                     size: "100%",
-                                    //borders: "LEFT | RIGHT | TOP",
                                     borders: "ALL",
                                     border_symbols: Thick,
                                     border_title: [(kind: Text(" Cover "))],
                                     border_title_alignment: Right,
                                     pane: Pane(AlbumArt)
                                 ),
-                                // Lyrics disabled for now - enable to show synced lyrics
-                                // (
-                                //     size: "7",
-                                //     borders: "ALL",
-                                //     border_symbols: Thick,
-                                //     border_title: [(kind: Text(" Lyrics "))],
-                                //     border_title_alignment: Right,
-                                //     pane: Pane(Lyrics)
-                                // ),
-                                // Spectrum in old Lyrics slot
+                                // Lyrics in bottom slot
                                 (
                                     size: "7",
                                     borders: "ALL",
                                     border_symbols: Thick,
-                                    //border_title: [(kind: Text(" Spectrum "))],
                                     border_title: [(kind: Text(" Lyrics "))],
                                     border_title_alignment: Right,
-                                    //pane: Pane(Cava)
                                     pane: Pane(Lyrics)
                                 ),
                             ],
@@ -293,8 +233,6 @@
         ),
         (
             name: "Directories",
-            borders: "ALL",
-            border_symbols: Thick,
             pane: Split(
                 size: "100%",
                 direction: Vertical,
@@ -333,8 +271,6 @@
         // ),
         (
             name: "Playlists",
-            borders: "ALL",
-            border_symbols: Thick,
             pane: Split(
                 size: "100%",
                 direction: Vertical,
@@ -343,8 +279,6 @@
         ),
         (
             name: "Search",
-            borders: "ALL",
-            border_symbols: Thick,
             pane: Split(
                 size: "100%",
                 direction: Vertical,

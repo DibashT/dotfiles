@@ -70,14 +70,14 @@
     "interval": 5,
     "exec": "mpc current --format='\"title\":\"%title%\",\"artist\":\"%artist%\"'"
   },
-  "custom/cava-internal": {
-    "exec": "sh ~/.config/waybar/scripts/Cava.sh",
-    "format": "{}",
-    "tooltip": false,
-    "on-click": "swaymsg reload & pkill waybar & waybar",
-    "layer": "below",
-    "output": "all"
-  },
+  // "custom/cava-internal": {
+  //   "exec": "sh ~/.config/waybar/scripts/Cava.sh",
+  //   "format": "{}",
+  //   "tooltip": false,
+  //   "on-click": "swaymsg reload & pkill waybar & waybar",
+  //   "layer": "below",
+  //   "output": "all"
+  // },
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
@@ -141,11 +141,11 @@
   },
   "cpu": {
     "format": "{usage:>3}% ",
-    "on-click": "ghostty -e htop"
+    "on-click": "ghostty -e btop"
   },
   "memory": {
     "format": "{:>3}% ",
-    "on-click": "ghostty -e htop"
+    "on-click": "ghostty -e btop"
   },
   "temperature": {
     "thermal-zone": 4,
