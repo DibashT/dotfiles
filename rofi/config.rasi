@@ -22,12 +22,6 @@ configuration {
 /*****----- Global Properties -----*****/
 * {
     font:                        "JetBrains Mono Nerd Font 10";
-    // background:                  #231419;
-    // background-alt:              #2D1E23;
-    // foreground:                  #FFFFFF;
-    // selected:                    #426647;
-    // active:                      #2E3F34;
-    // urgent:                      #D08261;
 /* Kanagawa Color Palette */
     background:                  #1F1F28; /* sumiInk1 (Main Background) */
     background-alt:              #2A2A37; /* sumiInk3 (Search bar & buttons) */
@@ -44,7 +38,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       650px;
+    width:                       560px;
     // height:                      400px;
     x-offset:                    0px;
     y-offset:                    0px;
@@ -52,10 +46,8 @@ window {
     /* properties for all widgets */
     enabled:                     true;
     border-radius:               12px;
-    border:                      3px;           /* Add this line */
-    border-color:                @active;  
-    // border-color:                @foreground;  
-    // border-color:                @selected;  
+    border:                      2px;
+    border-color:                @active;
     cursor:                      "default";
     background-color:            @background;
 }
@@ -71,17 +63,16 @@ mainbox {
 }
 
 imagebox {
-    padding:                     20px;
+    padding:                     14px;
     background-color:            transparent;
-    background-image:            url("~/.config/rofi/images/ign-waifu.png", height);
-    // background-image:            url("~/.config/rofi/images/dragon.jpg", height);
+    background-image:            url("/home/dibash/.config/rofi/images/ign-waifu-sidebar.png", height);
     orientation:                 vertical;
     children:                    [ "inputbar", "dummy", "mode-switcher" ];
 }
 
 listbox {
-    spacing:                     20px;
-    padding:                     20px;
+    spacing:                     12px;
+    padding:                     14px;
     background-color:            transparent;
     orientation:                 vertical;
     children:                    [ "message", "listview" ];
@@ -96,7 +87,7 @@ dummy {
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     12px;
+    padding:                     10px;
     border-radius:               10px;
     background-color:            @background-alt;
     text-color:                  @foreground;
@@ -121,12 +112,12 @@ entry {
 /*****----- Mode Switcher -----*****/
 mode-switcher{
     enabled:                     true;
-    spacing:                     15px;
+    spacing:                     10px;
     background-color:            transparent;
     text-color:                  @foreground;
 }
 button {
-    padding:                     12px;
+    padding:                     10px;
     border-radius:               10px;
     background-color:            @background-alt;
     text-color:                  inherit;
@@ -141,7 +132,7 @@ button selected {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       6;
+    lines:                       7;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -150,7 +141,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     8px;
+    spacing:                     6px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
@@ -159,8 +150,8 @@ listview {
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    spacing:                     12px;
-    padding:                     8px;
+    spacing:                     10px;
+    padding:                     6px;
     border-radius:               10px;
     background-color:            transparent;
     text-color:                  @foreground;
@@ -187,13 +178,13 @@ element selected.urgent {
     text-color:                  @foreground;
 }
 element selected.active {
-    background-color:            @urgent;
+    background-color:            @active;
     text-color:                  @foreground;
 }
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        32px;
+    size:                        28px;
     cursor:                      inherit;
 }
 element-text {
@@ -218,7 +209,7 @@ textbox {
 }
 error-message {
     padding:                     12px;
-    border-radius:               20px;
+    border-radius:               10px;
     background-color:            @background;
     text-color:                  @foreground;
 }
