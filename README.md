@@ -62,7 +62,7 @@ Back up any existing configuration before creating the links.
 
 ## Neovim
 
-The Neovim configuration is written from scratch in Lua.
+The Neovim configuration is written in Lua.
 
 It does not use LazyVim or `lazy.nvim`. Plugins are installed with Neovim's native package manager using `vim.pack.add()`.
 
