@@ -1,0 +1,128 @@
+/* Keybindings cheatsheet - plain box, no sidebar image
+ * Colors match rofi/launchers/launcher-1.rasi (Kanagawa)
+ */
+configuration {
+  show-icons: false;
+}
+
+* {
+  font: "JetBrains Mono Nerd Font 10";
+  /* Kanagawa Color Palette (same as launcher-1) */
+  background:     #1F1F28; /* sumiInk1 (Main Background) */
+  background-alt: #2A2A37; /* sumiInk3 (Search bar & buttons) */
+  foreground:     #DCD7BA; /* fujiWhite (Text) */
+  active:         #7E9CD8; /* crystalBlue (Active states) */
+  selected:       #2D4F67; /* waveBlue2 (Selected) */
+  urgent:         #E82424; /* samuraiRed (Urgent) */
+}
+
+window {
+  transparency: "real";
+  location: center;
+  anchor: center;
+  fullscreen: false;
+  width: 620px;
+  x-offset: 0px;
+  y-offset: 0px;
+  enabled: true;
+  border-radius: 14px;
+  border: 2px;
+  border-color: @active;
+  cursor: "default";
+  background-color: @background;
+}
+
+mainbox {
+  enabled: true;
+  spacing: 8px;
+  padding: 16px;
+  background-color: transparent;
+  orientation: vertical;
+  children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+  enabled: true;
+  spacing: 10px;
+  padding: 12px;
+  margin: 0px 0px 4px 0px;
+  border-radius: 10px;
+  border: 1px;
+  border-color: @active;
+  background-color: @background-alt;
+  text-color: @foreground;
+  children: [ "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+  enabled: true;
+  expand: false;
+  str: "";
+  background-color: inherit;
+  text-color: inherit;
+}
+
+entry {
+  enabled: true;
+  background-color: inherit;
+  text-color: inherit;
+  cursor: text;
+  placeholder: "Search keys...";
+  placeholder-color: inherit;
+}
+
+listview {
+  enabled: true;
+  columns: 1;
+  lines: 10;
+  cycle: true;
+  dynamic: false;
+  scrollbar: false;
+  layout: vertical;
+  reverse: false;
+  fixed-height: true;
+  fixed-columns: true;
+  spacing: 4px;
+  padding: 4px 0px 0px 0px;
+  background-color: transparent;
+  text-color: @foreground;
+  cursor: "default";
+}
+
+element {
+  enabled: true;
+  spacing: 10px;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: transparent;
+  text-color: @foreground;
+  cursor: pointer;
+}
+
+element normal.normal {
+  background-color: transparent;
+  text-color: @foreground;
+}
+
+element alternate.normal {
+  background-color: transparent;
+  text-color: @foreground;
+}
+
+element selected.normal {
+  background-color: @selected;
+  text-color: @foreground;
+}
+
+element selected.urgent {
+  background-color: @urgent;
+  text-color: #191724;
+}
+
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  cursor: inherit;
+  vertical-align: 0.5;
+  horizontal-align: 0.0;
+}
