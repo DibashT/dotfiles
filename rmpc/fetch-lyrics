@@ -1,0 +1,37 @@
+#!/bin/env sh
+# ponytail: lrclib get->search, synced only; ceiling: single source lrclib, plain-only songs show nothing; upgrade: second API or manual .lrc
+LRCLIB_INSTANCE="https://lrclib.net"
+if [ "$HAS_LRC" = "false" ]; then
+    mkdir -p "$(dirname "$LRC_FILE")"
+    fetch_get_synced() { curl -sG -H "Lrclib-Client: rmpc-$VERSION" --data-urlencode "artist_name=$1" --data-urlencode "track_name=$2" --data-urlencode "album_name=$ALBUM" "$LRCLIB_INSTANCE/api/get" | jq -r '.syncedLyrics // "null"'; }
+    fetch_search_synced() { curl -sG -H "Lrclib-Client: rmpc-$VERSION" --data-urlencode "q=$1 $2" "$LRCLIB_INSTANCE/api/search" | jq -r 'if length==0 then "null" else .[0].syncedLyrics // "null" end'; }
+    try() {
+        L="$(fetch_get_synced "$1" "$2")"; [ -n "$L" ] && [ "$L" != "null" ] && [ "$L" != "" ] && echo "$L" && return 0
+        L="$(fetch_search_synced "$1" "$2")"; [ -n "$L" ] && [ "$L" != "null" ] && [ "$L" != "" ] && echo "$L" && return 0
+        return 1
+    }
+    LYRICS="$(try "$ARTIST" "$TITLE")"
+    # ponytail: youtube suffix "(Official Video)", "(nostalgic mix)" breaks exact match; try stripping " ("
+    if [ -z "$LYRICS" ]; then
+        case "$TITLE" in *" ("*) STRIP="$(echo "$TITLE" | cut -d'(' -f1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"; LYRICS="$(try "$ARTIST" "$STRIP")"; [ -n "$LYRICS" ] && TITLE="$STRIP";; esac
+    fi
+    # youtube addyt: TITLE often "Artist - Title (Video)" with broken ARTIST
+    if [ -z "$LYRICS" ]; then
+        case "$TITLE" in *" - "*) 
+            P_ARTIST="$(echo "$TITLE" | cut -d'-' -f1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+            P_TITLE="$(echo "$TITLE" | cut -d'-' -f2 | cut -d'(' -f1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+            LYRICS="$(try "$P_ARTIST" "$P_TITLE")"
+            [ -n "$LYRICS" ] && ARTIST="$P_ARTIST" && TITLE="$P_TITLE"
+            ;;
+        esac
+    fi
+    if [ -z "$LYRICS" ]; then
+        rmpc remote --pid "$PID" status "Lyrics not found: $ARTIST - $TITLE" --level warn
+        exit
+    fi
+    echo "[ar:$ARTIST]" >"$LRC_FILE"
+    { echo "[al:$ALBUM]"; echo "[ti:$TITLE]"; } >>"$LRC_FILE"
+    echo "$LYRICS" | sed -E '/^\[(ar|al|ti):/d' >>"$LRC_FILE"
+    rmpc remote --pid "$PID" indexlrc --path "$LRC_FILE"
+    rmpc remote --pid "$PID" status "Downloaded lyrics: $ARTIST - $TITLE" --level info
+fi

@@ -8,7 +8,7 @@
     theme: Some("theme.ron"),
     cache_dir: Some("~/Music/rmpc-cache"),
     lyrics_dir: Some("~/Music/lyrics"),
-    on_song_change: None,
+    on_song_change: ["~/.config/rmpc/fetch-lyrics"],
     volume_step: 5,
     max_fps: 30,
     scrolloff: 0,
