@@ -1,14 +1,34 @@
 ## Kanagawa color scheme
 gui:
+  nerdFontsVersion: "3"
+  showFileIcons: true
+  showRandomTip: false
+  showCommandLog: false
   theme:
     activeBorderColor:
       - '#957FB8'
       - bold
     inactiveBorderColor:
       - '#54546D'
+    searchingActiveBorderColor:
+      - '#7E9CD8'
+      - bold
+    optionsTextColor:
+      - '#7E9CD8'
     selectedLineBgColor:
       - '#2D4F67'
+    cherryPickedCommitFgColor:
+      - '#7E9CD8'
+    cherryPickedCommitBgColor:
+      - '#7E9CD8'
+    markedBaseCommitBgColor:
+      - '#E6C384'
     defaultFgColor:
       - '#DCD7BA'
     unstagedChangesColor:
       - '#C34043'
+os:
+  editPreset: nvim
+disableStartupPopups: true
+update:
+  method: prompt
