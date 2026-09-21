@@ -154,7 +154,6 @@ vim.pack.add({
     branch = main,
     build = ":TSUpdate",
   },
-  'https://github.com/mason-org/mason.nvim',
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/mfussenegger/nvim-dap',
   'https://github.com/stevearc/oil.nvim',
@@ -173,17 +172,8 @@ vim.pack.add({
   { src = 'https://github.com/echasnovski/mini.pairs',       version = 'stable' },
   { src = 'https://github.com/echasnovski/mini.bufremove',   version = 'stable' },
   { src = 'https://github.com/echasnovski/mini.notify',      version = 'stable' },
-  'https://github.com/rebelot/kanagawa.nvim',
-  { src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
-  'https://github.com/vague-theme/vague.nvim',
-})
-
-require("mason").setup({
-  ui = {
-    border = "rounded",
-    width = 0.8,
-    height = 0.8,
-  },
+'https://github.com/rebelot/kanagawa.nvim',
+    'https://github.com/vague-theme/vague.nvim',
 })
 
 --Kanagawa apply after 0.12
@@ -200,27 +190,6 @@ require('kanagawa').setup({
 })
 vim.cmd('colorscheme kanagawa-wave')
 
---Rose pine colorscheme
--- require("rose-pine").setup()
-
--- -- Treesitter (Neovim 0.12 Native Way)
--- vim.api.nvim_create_autocmd("FileType", {
---   callback = function()
---     pcall(vim.treesitter.start)
---   end,
--- })
---
--- -- Install the parsers you need
--- local parsers = {
---   "c", "cpp", "lua", "vim", "vimdoc", "query", "python", "markdown", "markdown_inline",
---   "html", "css", "javascript", "typescript", "tsx",
---   "json", "yaml", "toml", "xml",
---   "bash", "dockerfile", "make", "regex",
---   "git_config", "gitcommit", "gitignore", "git_rebase"
--- }
--- pcall(function()
---   require("nvim-treesitter").install(parsers)
--- end)
 --
 
 local setup_treesitter = function()
@@ -299,13 +268,13 @@ require("fzf-lua").setup({
   },
   files = {
     formatter = "path.filename_first",
-    git_icons = false,
-    file_icons = false,
+    git_icons = true,
+    file_icons = true,
   },
   grep = {
     rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
-    git_icons = false,
-    file_icons = false,
+    git_icons = true,
+    file_icons = true,
   },
   ui_select = true,
   keymap = {
@@ -319,24 +288,12 @@ vim.keymap.set("n", "<leader><leader>", "<cmd>FzfLua files<cr>", { desc = "Find 
 vim.keymap.set("n", "<leader>/", "<cmd>FzfLua live_grep<cr>", { desc = "Find live grep" })
 vim.keymap.set("n", "<leader>fr", "<cmd>FzfLua resume<cr>", { desc = "Resume last picker" })
 vim.keymap.set("n", "<leader>,", "<cmd>FzfLua buffers<cr>", { desc = "Buffers" })
-
-vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_finder<cr>", { desc = "Definition + References" })
-vim.keymap.set("n", "grr", "<cmd>FzfLua lsp_references<cr>", { desc = "References" })
-vim.keymap.set("n", "gri", "<cmd>FzfLua lsp_implementations<cr>", { desc = "Implementations" })
-vim.keymap.set("n", "gra", "<cmd>FzfLua lsp_code_actions<cr>", { desc = "Code actions" })
+vim.keymap.set("n", "<leader>h", "<cmd>FzfLua keymaps<cr>", { desc = "Show all keymaps" })
 
 vim.keymap.set('n', '<leader>fc', '<cmd>FzfLua colorschemes<cr>', { desc = 'Pick colorscheme' })
 
 --Web-devicons
 require("nvim-web-devicons").setup({})
-
---Tree_sitter
--- vim.api.nvim_create_autocmd("FileType", {
---   callback = function()
---     pcall(vim.treesitter.start)
---   end,
--- })
--- vim.cmd("syntax off")
 
 -- LSP
 vim.lsp.enable({
@@ -532,16 +489,16 @@ vim.keymap.set("n", "<leader>wn", function()
 end, { desc = "New note" })
 
 -- Search notes (fzf-lua live grep scoped to wiki)
--- vim.keymap.set("n", "<leader>wg", function()
+
 --   require("fzf-lua").live_grep({ cwd = wiki })
 -- end, { desc = "Grep wiki" })
 
 -- -- Find note by filename
--- vim.keymap.set("n", "<leader>wf", function()
+
 --   require("fzf-lua").files({ cwd = wiki })
 -- end, { desc = "Find wiki file" })
 
--- vim.keymap.set("n", "<leader>ws", function()
+
 --   vim.cmd("!cd " .. vim.fn.expand("~/git/wiki") .. " && git add . && git commit -m 'update' && git push")
 -- end, { desc = "Sync wiki" })
 vim.keymap.set("n", "<leader>ws", function()
@@ -559,7 +516,7 @@ vim.keymap.set("n", "<leader>ws", function()
   )
 end, { desc = "Sync wiki" })
 
--- Lazygit.nvim
+
 local function git_line_history(start_line, end_line)
   start_line, end_line = math.min(start_line, end_line), math.max(start_line, end_line)
   local range = start_line .. ',' .. end_line .. ':' .. vim.fn.expand('%:t')
@@ -584,11 +541,7 @@ vim.keymap.set('v', '<leader>gl', function()
   git_line_history(vim.fn.line('v'), vim.fn.line('.'))
 end, { desc = 'Git line history' })
 
---Lazygit
--- vim.keymap.set("n", "<leader>g", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
--- vim.keymap.set("n", "<leader>gb", function()
---   vim.ui.open(vim.fn.systemlist("git remote get-url origin")[1])
--- end, { desc = "Open git remote" })
+
 
 -- Codediff (vscode like diffs :))
 require("codediff").setup({})
@@ -641,37 +594,4 @@ dashboard.section.footer.opts.hl = "AlphaFooter"
 
 alpha.setup(dashboard.opts)
 
--- Leap.nvim configuration
--- require("leap").opts.safe_labels = {} -- Jump immediately to single matches
--- require("leap").opts.labels =
--- -- { "a", "s", "d", "f", "g", "h", "j", "k", "l", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p" }
--- { "a", "s", "d", "f", "g", "h", "j", "k", "l", ";" }
 
--- -- Basic bidirectional leap motions
--- vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
--- vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
---
--- -- Usage: gs{leap}yap yanks a paragraph at the leap target
--- vim.keymap.set({ "n", "o" }, "gs", "<Plug>(leap-remote)")
--- vim.keymap.set({ "n", "o" }, "gS", "<Plug>(leap-remote-linewise)")
---
--- -- Usage: van{label} or vannny to select treesitter nodes
--- vim.keymap.set({ "x", "o" }, "an", function()
---   require("leap.treesitter").select({
---     opts = require("leap.user").with_traversal_keys("n", "N"),
---   })
--- end)
---
--- -- Optional: Automatic paste after remote yank
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "RemoteOperationDone",
---   group = vim.api.nvim_create_augroup("LeapRemote", {}),
---   callback = function(event)
---     if vim.v.operator == "y" and event.data.register == '"' then
---       vim.cmd("normal! p")
---     end
---   end,
--- })
---
--- -- Reduce visual noise
--- vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
