@@ -42,13 +42,55 @@
         debug: (fg: "#a6da95"),
         trace: (fg: "#6e6a86"),
     ),
+    // Progress bar presets - keep ONE uncommented, hot-reload applies on save
+    // 1. Nerd-font fancy (active)
     progress_bar: (
-        symbols: ["▓", "▓", "▒", " ", "░"],
+        symbols: ["", "", "⭘", " ", " "],
         track_style: (fg: "#26233a"),
         elapsed_style: (fg: "#e6c384", modifiers: "Bold"),
-        thumb_style: (fg: "#ebbcba"),
+        thumb_style: (fg: "#ebbcba", modifiers: "Bold"),
         use_track_when_empty: true,
     ),
+    // 2. Solid + round thumb
+    // progress_bar: (
+    //     symbols: ["", "█", "●", "─", ""],
+    //     track_style: (fg: "#26233a"),
+    //     elapsed_style: (fg: "#e6c384", modifiers: "Bold"),
+    //     thumb_style: (fg: "#ebbcba", modifiers: "Bold"),
+    //     use_track_when_empty: true,
+    // ),
+    // 3. Blocky segments
+    // progress_bar: (
+    //     symbols: ["▰", "▰", "▰", "▱", "▱"],
+    //     track_style: (fg: "#26233a"),
+    //     elapsed_style: (fg: "#e6c384", modifiers: "Bold"),
+    //     thumb_style: (fg: "#ebbcba", modifiers: "Bold"),
+    //     use_track_when_empty: true,
+    // ),
+    // 4. Bracketed retro
+    // progress_bar: (
+    //     symbols: ["[", "█", "▶", "─", "]"],
+    //     track_style: (fg: "#26233a"),
+    //     elapsed_style: (fg: "#e6c384", modifiers: "Bold"),
+    //     thumb_style: (fg: "#ebbcba", modifiers: "Bold"),
+    //     use_track_when_empty: true,
+    // ),
+    // 5. Original shaded
+    // progress_bar: (
+    //     symbols: ["▓", "▓", "▒", " ", "░"],
+    //     track_style: (fg: "#26233a"),
+    //     elapsed_style: (fg: "#e6c384", modifiers: "Bold"),
+    //     thumb_style: (fg: "#ebbcba", modifiers: "Bold"),
+    //     use_track_when_empty: true,
+    // ),
+    // 6. Thin minimal
+    // progress_bar: (
+    //     symbols: ["━", "━", "●", "─", "━"],
+    //     track_style: (fg: "#26233a"),
+    //     elapsed_style: (fg: "#e6c384", modifiers: "Bold"),
+    //     thumb_style: (fg: "#ebbcba", modifiers: "Bold"),
+    //     use_track_when_empty: true,
+    // ),
     scrollbar: (
         symbols: ["│", "", "", ""],
         track_style: (),
@@ -133,6 +175,10 @@
         (
             prop: (
                 kind: Property(Duration),
+                //style: (fg: "#c4a7e7", modifiers: "Bold"),
+                //default: (
+                //    kind: Text("-"), style: (fg: "#6e6a86", modifiers: "Dim")
+                //)
                 default: (
                     kind: Text("-")
                 )
@@ -233,9 +279,11 @@
         ),
         "elapsed_and_bitrate": Pane(Property(
             content: [
-                (kind: Property(Status(Elapsed)), style: (fg: "#dcd7ba")),
+                (kind: Text("󰎈 "), style: (fg: "#f6c177", modifiers: "Bold")),
+                (kind: Property(Status(Elapsed)), style: (fg: "#f6c177", modifiers: "Bold")),
                 (kind: Text(" / "), style: (fg: "#6e6a86")),
-                (kind: Property(Status(Duration)), style: (fg: "#dcd7ba")),
+                (kind: Text("󰐱 "), style: (fg: "#c4a7e7", modifiers: "Bold")),
+                (kind: Property(Status(Duration)), style: (fg: "#c4a7e7", modifiers: "Bold")),
                 (kind: Group([
                     (kind: Text(" ["), style: (fg: "#6e6a86")),
                     (kind: Property(Status(Bitrate)), style: (fg: "#f6c177")),
