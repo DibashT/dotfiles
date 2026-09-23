@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
 # Times the screen off and puts it to background
-trap 'kill %1 2>/dev/null; exit' INT TERM EXIT
 swayidle \
-    timeout 300 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' &
+    timeout 300 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' &
+IDLE_PID=$!
+trap 'kill "$IDLE_PID" 2>/dev/null' INT TERM EXIT
 # Locks the screen immediately
-swaylock
+swaylock -c 000000
 # Kills last background task so idle timer doesn't keep running
-kill %%
+kill "$IDLE_PID" 2>/dev/null
