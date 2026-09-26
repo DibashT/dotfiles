@@ -2,6 +2,12 @@
   "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": []
+    },
     "format": "{icon}",
     // "format": "< %g >",
     // "format_focused" : "< %g ● >",
@@ -15,7 +21,10 @@
       "7": "",
       "8": "",
       "9": "",
-      "10": ""
+      "10": "",
+      "focused": "",
+      "default": "",
+      "urgent": ""
     }
   },
   "mpd": {
