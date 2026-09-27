@@ -20,7 +20,7 @@
         song: "󰝚 ",
         dir: "󱍙 ",
         playlist: "󰲸 ",
-        marker: "▸",
+        marker: " ",
         ellipsis: "…",
         song_style: (fg: "#c4a7e7"),
         dir_style: (fg: "#f6c177"),
@@ -146,7 +146,7 @@
                 )
             ),
             label_prop: (
-                kind: Text("Title")
+                kind: Text(" Title")
             ),
             width: "43%",
         ),
@@ -163,7 +163,7 @@
                 )
             ),
             label_prop: (
-                kind: Text("Artist")
+                kind: Text(" Artist")
             ),
             width: "33%",
         ),
@@ -184,7 +184,7 @@
                 )
             ),
             label_prop: (
-                kind: Text("Duration")
+                kind: Text(" Duration")
             ),
             width: "20%",
             alignment: Right,
@@ -244,7 +244,7 @@
                             size: "100%",
                             borders: "TOP | BOTTOM | RIGHT",
                             border_symbols: Thick,
-                            border_title: [(kind: Text(" ")), (kind: Property(Status(QueueLength()))), (kind: Text(" songs / ")), (kind: Property(Status(QueueTimeTotal()))), (kind: Text(" total time "))],
+                            border_title: [(kind: Text("  ")), (kind: Property(Status(QueueLength()))), (kind: Text(" songs / ")), (kind: Property(Status(QueueTimeTotal()))), (kind: Text(" total time "))],
                             border_title_alignment: Right,
                             pane: Component("progress_bar"),
                         ),
@@ -271,7 +271,7 @@
         "volume": Split(
             direction: Horizontal,
             panes: [
-                (size: "2", pane: Pane(Property(content: [(kind: Text(" "))]))),
+                (size: "2", pane: Pane(Property(content: [(kind: Text(" "), style: (fg: "#ebbcba"))]))),
                 (size: "100%", pane: Pane(Volume(kind: Slider(symbols: (start: None, filled: "━", thumb: "●", track: "─", end: None))))),
                 (size: "3", pane: Pane(Property(content: [(kind: Property(Status(Volume)), style: (fg: "#ebbcba", modifiers: "Bold"))], align: Right))),
                 (size: "2", pane: Pane(Property(content: [(kind: Text("%"), style: (fg: "#ebbcba"))]))),

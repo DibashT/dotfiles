@@ -546,8 +546,6 @@ vim.keymap.set('v', '<leader>gl', function()
   git_line_history(vim.fn.line('v'), vim.fn.line('.'))
 end, { desc = 'Git line history' })
 
-
-
 -- Codediff (vscode like diffs :))
 require("codediff").setup({})
 vim.keymap.set('n', '<leader>ru', '<cmd>CodeDiff<cr>', { desc = 'Code diff not staged' })

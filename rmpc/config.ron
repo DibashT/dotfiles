@@ -86,13 +86,13 @@
             "gt":         NextTab,
             "<S-Tab>":    PreviousTab,
             "gT":         PreviousTab,
-            "1":          SwitchToTab("Queue"),
-            "2":          SwitchToTab("Directories"),
+            "1":          SwitchToTab(" Queue"),
+            "2":          SwitchToTab(" Directories"),
             //"3":          SwitchToTab("Artists"),
             //"4":          SwitchToTab("Album Artists"),
             //"5":          SwitchToTab("Albums"),
-            "3":          SwitchToTab("Playlists"),
-            "4":          SwitchToTab("Search"),
+            "3":          SwitchToTab(" Playlists"),
+            "4":          SwitchToTab(" Search"),
             "<C-u>":      Update,
             "<C-U>":      Rescan,
             "R":          AddRandom,
@@ -173,7 +173,7 @@
     ),
     tabs: [
         (
-            name: "Queue",
+            name: " Queue",
             pane: Split(
                 direction: Horizontal,
                 panes: [
@@ -212,7 +212,7 @@
                                     size: "100%",
                                     borders: "ALL",
                                     border_symbols: Thick,
-                                    border_title: [(kind: Text(" Cover "))],
+                                    border_title: [(kind: Text(" 󰋊 Cover "))],
                                     border_title_alignment: Right,
                                     pane: Pane(AlbumArt)
                                 ),
@@ -221,7 +221,7 @@
                                     size: "7",
                                     borders: "ALL",
                                     border_symbols: Thick,
-                                    border_title: [(kind: Text(" Lyrics "))],
+                                    border_title: [(kind: Text(" 󰝚 Lyrics "))],
                                     border_title_alignment: Right,
                                     pane: Pane(Lyrics)
                                 ),
@@ -232,7 +232,7 @@
             ),
         ),
         (
-            name: "Directories",
+            name: " Directories",
             pane: Split(
                 size: "100%",
                 direction: Vertical,
@@ -270,7 +270,7 @@
         //     )
         // ),
         (
-            name: "Playlists",
+            name: " Playlists",
             pane: Split(
                 size: "100%",
                 direction: Vertical,
@@ -278,7 +278,7 @@
             )
         ),
         (
-            name: "Search",
+            name: " Search",
             pane: Split(
                 size: "100%",
                 direction: Vertical,
