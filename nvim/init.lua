@@ -72,7 +72,8 @@ vim.o.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50"
 
 --Vim diagnostic
 vim.diagnostic.config({
-  underline = false,        --dont underline error
+  -- underline = false,        --dont underline error
+  underline = true,        --dont underline error
   virtual_text = false,     --show most severe error first
   severity_sort = true,     --dont show while typing
   update_in_insert = false, --nice look for floats (using ty and ruff)
@@ -156,7 +157,7 @@ vim.pack.add({
   'https://github.com/ibhagwan/fzf-lua',
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
-    branch = main,
+    branch = "main",
     build = ":TSUpdate",
   },
   'https://github.com/neovim/nvim-lspconfig',
@@ -383,7 +384,7 @@ dap.configurations.python = { -- https://github.com/microsoft/debugpy/wiki/Debug
     justMyCode = false,
     python = function()
       local root = vim.fs.root(0, '.venv')
-      return { root and root .. '/.venv/bin/python' or 'python3' }
+      return root and root .. '/.venv/bin/python' or 'python3'
     end,
     cwd = function()
       return vim.fs.root(0, '.venv') or vim.fn.getcwd()
@@ -398,7 +399,7 @@ dap.configurations.python = { -- https://github.com/microsoft/debugpy/wiki/Debug
     justMyCode = false,
     python = function()
       local root = vim.fs.root(0, '.venv')
-      return { root and root .. '/.venv/bin/python' or 'python3' }
+      return root and root .. '/.venv/bin/python' or 'python3'
     end,
     cwd = function()
       return vim.fs.root(0, '.venv') or vim.fn.getcwd()
@@ -416,7 +417,7 @@ dap.configurations.python = { -- https://github.com/microsoft/debugpy/wiki/Debug
     justMyCode = false,
     python = function()
       local root = vim.fs.root(0, '.venv')
-      return { root and root .. '/.venv/bin/python' or 'python3' }
+      return root and root .. '/.venv/bin/python' or 'python3'
     end,
     cwd = function()
       return vim.fs.root(0, '.venv') or vim.fn.getcwd()
@@ -452,7 +453,6 @@ require("oil").setup({
   columns = {
     "icon",
     "mtime",
-    highlight = "comment"
   },
   view_options = {
     show_hidden = true,

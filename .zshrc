@@ -2,7 +2,10 @@
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export VISUAL='nvim'
-export TERM="xterm-ghostty"
+# Ghostty sets TERM=xterm-ghostty itself outside tmux; don't override inside tmux
+if [[ -z "$TMUX" ]]; then
+  export TERM="xterm-ghostty"
+fi
 export LANG="en_US.UTF-8"
 
 # --- PATH (Deduplicated) ---
@@ -102,4 +105,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 eval "$(pyenv init -)"
-# --- PIP ALIAS ---
+
+# --- CURSOR ---
+# Force block cursor (overrides oh-my-zsh/theme defaults)
+echo -ne '\e[2 q'
