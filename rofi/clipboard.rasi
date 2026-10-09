@@ -8,7 +8,7 @@ configuration {
   background:     #1F1F28;
   background-alt: #2A2A37;
   foreground:     #DCD7BA;
-  active:         #7E9CD8;
+  active:         #7AA2F7;
   selected:       #2D4F67;
   urgent:         #E82424;
 }
@@ -18,11 +18,11 @@ window {
   location: center;
   anchor: center;
   fullscreen: false;
-  width: 620px;
+  width: 560px;
   x-offset: 0px;
   y-offset: 0px;
   enabled: true;
-  border-radius: 14px;
+  border-radius: 0px;
   border: 2px;
   border-color: @active;
   cursor: "default";
@@ -31,8 +31,8 @@ window {
 
 mainbox {
   enabled: true;
-  spacing: 8px;
-  padding: 16px;
+  spacing: 0px;
+  padding: 0px;
   background-color: transparent;
   orientation: vertical;
   children: [ "message", "listview" ];
@@ -40,10 +40,10 @@ mainbox {
 
 message {
   enabled: true;
-  padding: 12px;
-  margin: 0px 0px 4px 0px;
-  border-radius: 10px;
-  border: 1px;
+  padding: 10px 14px;
+  margin: 0px;
+  border-radius: 0px;
+  border: 0px;
   border-color: @active;
   background-color: @background-alt;
   text-color: @foreground;
@@ -55,13 +55,13 @@ textbox {
   text-color: @foreground;
   vertical-align: 0.5;
   horizontal-align: 0.5;
-  font: "JetBrains Mono Nerd Font Bold 11";
+  font: "JetBrains Mono Nerd Font 10";
 }
 
 listview {
   enabled: true;
   columns: 1;
-  lines: 10;
+  lines: 7;
   cycle: true;
   dynamic: false;
   scrollbar: false;
@@ -69,8 +69,8 @@ listview {
   reverse: false;
   fixed-height: true;
   fixed-columns: true;
-  spacing: 4px;
-  padding: 4px 0px 0px 0px;
+  spacing: 0px;
+  padding: 0px;
   background-color: transparent;
   text-color: @foreground;
   cursor: "default";
@@ -79,8 +79,8 @@ listview {
 element {
   enabled: true;
   spacing: 10px;
-  padding: 6px;
-  border-radius: 10px;
+  padding: 10px 14px;
+  border-radius: 0px;
   background-color: transparent;
   text-color: @foreground;
   cursor: pointer;
@@ -107,4 +107,6 @@ element-text {
   cursor: inherit;
   vertical-align: 0.5;
   horizontal-align: 0.0;
+  highlight: inherit;
+  markup: true;
 }

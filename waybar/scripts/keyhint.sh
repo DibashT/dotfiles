@@ -7,5 +7,5 @@ grep -h '^[[:space:]]*bindsym' "$CONFIG_DIR"/*.conf 2>/dev/null \
     -e 's/\$up/k/g' -e 's/\$right/l/g' -e 's/\$term/ghostty/g' \
     -e 's/\$menu/app-launcher/g' \
   | sort -u \
-  | awk '{ key=$1; $1=""; sub(/^ /, ""); printf "%-20s  │  %s\n", key, $0 }' \
-  | rofi -dmenu -i -p 'Sway keys (type to filter)' -l 10 -theme ~/.config/rofi/keyhint.rasi
+  | awk '{ key=$1; $1=""; sub(/^ /, ""); pad = 18 - length(key); if (pad < 0) pad = 0; printf "<b>%s</b>%*s <span color=\"#F6C177\">:</span> %.80s\n", key, pad, "", substr($0, 1, 80) }' \
+  | rofi -dmenu -i -markup-rows -p 'Sway keys (type to filter)' -l 7 -theme ~/.config/rofi/keyhint.rasi

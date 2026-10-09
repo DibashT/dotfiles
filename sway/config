@@ -8,7 +8,7 @@
 ######################################################################
 
 # set background
-output * bg /home/dibash/.config/backgrounds/003.jpg fill
+output * bg /home/dibash/.config/backgrounds/ign-waifu.png fill
 
 # include custom sway config
 include "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf"

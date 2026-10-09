@@ -27,7 +27,7 @@ configuration {
     background-alt:              #2A2A37; /* sumiInk3 (Search bar & buttons) */
     foreground:                  #DCD7BA; /* fujiWhite (Text) */
     selected:                    #2D4F67; /* waveBlue2 (Selected items) */
-    active:                      #7E9CD8; /* crystalBlue (Active states) */
+    active:                      #7AA2F7; /* sway focused blue (matched) */
     urgent:                      #E82424; /* samuraiRed (Urgent states) */
 }
 
@@ -45,7 +45,7 @@ window {
 
     /* properties for all widgets */
     enabled:                     true;
-    border-radius:               12px;
+    border-radius:               0px;
     border:                      2px;
     border-color:                @active;
     cursor:                      "default";

@@ -26,7 +26,7 @@ configuration {
     background:                  #1F1F28; /* sumiInk1 (Main Background) */
     background-alt:              #2A2A37; /* sumiInk3 (Search bar & buttons) */
     foreground:                  #DCD7BA; /* fujiWhite (Text) */
-    active:                      #7E9CD8; /* crystalBlue (Active states) */
+    active:                      #7AA2F7; /* sway focused blue (matched) */
     selected:                    #2D4F67; /* lavneder */
     urgent:                      #E82424; /* samuraiRed (Urgent states) */
 }
@@ -39,13 +39,12 @@ window {
     anchor:                      center;
     fullscreen:                  false;
     width:                       560px;
-    // height:                      420px;
     x-offset:                    0px;
     y-offset:                    0px;
 
     /* properties for all widgets */
     enabled:                     true;
-    border-radius:               12px;
+    border-radius:               0px;
     border:                      2px;
     border-color:                @active;
     cursor:                      "default";
@@ -66,15 +65,15 @@ imagebox {
     background-color:            transparent;
     background-image:            url("/home/dibash/.config/rofi/images/ign-waifu-sidebar.png", height);
     orientation:                 vertical;
-    children:                    [ "inputbar", "dummy", "mode-switcher" ];
+    children:                    [ "dummy", "mode-switcher" ];
 }
 
 listbox {
-    spacing:                     12px;
-    padding:                     14px;
+    spacing:                     0px;
+    padding:                     0px;
     background-color:            transparent;
     orientation:                 vertical;
-    children:                    [ "message", "listview" ];
+    children:                    [ "inputbar", "message", "listview" ];
 }
 
 dummy {
@@ -86,8 +85,9 @@ dummy {
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     10px;
-    border-radius:               10px;
+    padding:                     10px 14px;
+    margin:                      0px;
+    border-radius:               0px;
     background-color:            @background-alt;
     text-color:                  @foreground;
     children:                    [ "textbox-prompt-colon", "entry" ];
@@ -140,7 +140,8 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     6px;
+    spacing:                     0px;
+    padding:                     0px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
@@ -150,8 +151,8 @@ listview {
 element {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     6px;
-    border-radius:               10px;
+    padding:                     10px 14px;
+    border-radius:               0px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
@@ -183,7 +184,7 @@ element selected.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        28px;
+    size:                        20px;
     cursor:                      inherit;
 }
 element-text {
@@ -196,19 +197,20 @@ element-text {
 
 /*****----- Message -----*****/
 message {
+    margin:                      0px;
     background-color:            transparent;
 }
 textbox {
-    padding:                     12px;
-    border-radius:               10px;
+    padding:                     10px 14px;
+    border-radius:               0px;
     background-color:            @background-alt;
     text-color:                  @foreground;
     vertical-align:              0.5;
     horizontal-align:            0.0;
 }
 error-message {
-    padding:                     12px;
-    border-radius:               10px;
+    padding:                     10px 14px;
+    border-radius:               0px;
     background-color:            @background;
     text-color:                  @foreground;
 }

@@ -286,7 +286,7 @@
     "format": "",
     // "format": "󰠦"  ,
     // "on-click": "rofi -show drun -replace",
-    "on-click": "rofi -show drun -theme ~/.config/rofi/config.rasi -replace",
+    "on-click": "rofi -show drun -theme ~/.config/rofi/launchers/launcher-1.rasi -replace",
     "tooltip": false
   }
 }
