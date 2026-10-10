@@ -63,7 +63,10 @@ mainbox {
 imagebox {
     padding:                     14px;
     background-color:            transparent;
-    background-image:            url("/home/dibash/.config/rofi/images/ign-waifu-sidebar.png", height);
+    // background-image:            url("/home/dibash/.config/rofi/images/ign-waifu-sidebar.png", height);
+    background-image:            url("/home/dibash/.config/rofi/images/train-sideview-sidebar.png", height);
+    // background-image:            url("/home/dibash/.config/rofi/images/Evening_sky-sidebar.png", height);
+    // background-image:            url("/home/dibash/.config/rofi/images/sh2-p-sidebar.png", height);
     orientation:                 vertical;
     children:                    [ "dummy", "mode-switcher" ];
 }
@@ -116,8 +119,8 @@ mode-switcher{
     text-color:                  @foreground;
 }
 button {
-    padding:                     10px;
-    border-radius:               10px;
+    padding:                     6px 8px;
+    border-radius:               8px;
     background-color:            @background-alt;
     text-color:                  inherit;
     cursor:                      pointer;
