@@ -8,10 +8,13 @@
 ######################################################################
 
 # set background
-output * bg /home/dibash/.config/backgrounds/ign-waifu.png fill
+output * bg $HOME/.config/backgrounds/neck.jpg fill
 
-# include custom sway config
-include "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf"
+# Define $mod before includes: system fragments (65-mode-passthrough.conf)
+# use it, and with single layered-include they load alphabetically before
+# config.d/default-options-and-keymaps.conf where it is also defined.
+set $mod Mod4
 
-# include default sway config
-include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf")'
+# include custom + default sway config (single layered-include so
+# same-basename files in ~/.config override system ones, e.g. 90-swayidle.conf)
+include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
