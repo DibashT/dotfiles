@@ -34,45 +34,49 @@
     "format-disconnected": "⚠  Disconnected",
     "format-stopped": " Not Playing",
     "on-click": "mpc toggle",
+    "on-scroll-up": "mpc -q pause && mpc -q next && mpc -q start",
+    "on-scroll-down": "mpc -q pause && mpc -q prev && mpc -q start",
     "state-icons": {
       "playing": "",
       "paused": ""
     }
   },
-  "mpd#2": {
-    "format": "",
-    "format-disconnected": "",
-    "format-paused": "",
-    "format-stopped": "",
-    // Commands to execute on events
-    "on-click": "mpc -q pause && mpc -q prev && mpc -q start"
-  },
-  "mpd#3": {
-    "format": "{stateIcon}",
-    "format-disconnected": "",
-    "format-paused": "{stateIcon}",
-    "format-stopped": "",
-    "state-icons": {
-      "paused": "",
-      "playing": ""
-    },
-    // Commands to execute on events
-    "on-click": "mpc toggle"
-  },
-  "mpd#4": {
-    "format": "",
-    "format-disconnected": "",
-    "format-paused": "",
-    "format-stopped": "",
-    // Commands to execute on events
-    "on-click": "mpc -q pause && mpc -q next && mpc -q start"
-  },
-  "custom/swap": {
-    "on-click": "~/.config/waybar/scripts/swap.sh",
-    "format": "Bg  ",
-    "tooltip": true,
-    "tooltip-format": "Swap between waybar Themes"
-  },
+  // Declutter: mpd#2/#3/#4 merged into single mpd above (click = toggle, scroll = prev/next). Uncomment to restore.
+//   "mpd#2": {
+//     "format": "",
+//     "format-disconnected": "",
+//     "format-paused": "",
+//     "format-stopped": "",
+//     // Commands to execute on events
+//     "on-click": "mpc -q pause && mpc -q prev && mpc -q start"
+//   },
+//   "mpd#3": {
+//     "format": "{stateIcon}",
+//     "format-disconnected": "",
+//     "format-paused": "{stateIcon}",
+//     "format-stopped": "",
+//     "state-icons": {
+//       "paused": "",
+//       "playing": ""
+//     },
+//     // Commands to execute on events
+//     "on-click": "mpc toggle"
+//   },
+//   "mpd#4": {
+//     "format": "",
+//     "format-disconnected": "",
+//     "format-paused": "",
+//     "format-stopped": "",
+//     // Commands to execute on events
+//     "on-click": "mpc -q pause && mpc -q next && mpc -q start"
+//   },
+  // Declutter: Bg swap pill removed (Super+Shift+w keybind still works). Uncomment to restore.
+//   "custom/swap": {
+//     "on-click": "~/.config/waybar/scripts/swap.sh",
+//     "format": "Bg  ",
+//     "tooltip": true,
+//     "tooltip-format": "Swap between waybar Themes"
+//   },
   "custom/mpd": {
     "format": " {title} - {artist}",
     "interval": 5,
@@ -143,18 +147,18 @@
   },
 
   // System
-  "custom/system": {
-    "format": " ",
-    "tooltip": false
-  },
-  "cpu": {
-    "format": "{usage:>3}% ",
-    "on-click": "ghostty -e btop"
-  },
-  "memory": {
-    "format": "{:>3}% ",
-    "on-click": "ghostty -e btop"
-  },
+   "custom/system": {
+     "format": " ",
+     "tooltip": false
+   },
+   "cpu": {
+     "format": "{usage:>3}% ",
+     "on-click": "ghostty -e btop"
+   },
+   "memory": {
+     "format": "{:>3}% ",
+     "on-click": "ghostty -e btop"
+   },
   "temperature": {
     "thermal-zone": 5,
     // "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
@@ -170,37 +174,37 @@
   //   //"on-click": "ghostty -e htop"
   // }, 
   // SSD (Root partition)
-  "disk": {
-    "interval": 30,
-    "format": " {percentage_used}% ",
-    "path": "/",
-    "tooltip-format": "SSD: {used} / {total} used"
-  },
+   "disk": {
+     "interval": 30,
+     "format": " {percentage_used}% ",
+     "path": "/",
+     "tooltip-format": "SSD: {used} / {total} used"
+   },
   // HDD (Storage drive)  
-  "disk#hdd": {
-    "interval": 30,
-    "format": "󰋊 {percentage_used}% ",
-    "path": "/mnt/storage",
-    "tooltip-format": "HDD: {used} / {total} used"
-  },
+   "disk#hdd": {
+     "interval": 30,
+     "format": "󰋊 {percentage_used}% ",
+     "path": "/mnt/storage",
+     "tooltip-format": "HDD: {used} / {total} used"
+   },
     // Group Hardware
-    "group/hardware": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 300,
-            "children-class": "not-memory",
-            "transition-left-to-right": false
-        },        
-        "modules": [
-            "custom/system",
-            "disk#hdd",
-            "disk",
-            "cpu",
-            "memory"
+     "group/hardware": {
+         "orientation": "inherit",
+         "drawer": {
+             "transition-duration": 300,
+             "children-class": "not-memory",
+             "transition-left-to-right": false
+         },        
+         "modules": [
+             "custom/system",
+             "disk#hdd",
+             "disk",
+             "cpu",
+             "memory"
             // "backlight",
             //"sway/language"
-        ]
-    },
+         ]
+     },
   "backlight": {
     // "device": "acpi_video1",
     "format": "{icon} {percent: >3}%",
@@ -211,6 +215,15 @@
     "on-scroll-up": "brightnessctl -c backlight set +5%",
     // "on-scroll-up": "light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob"
     "on-click": ""
+  },
+  "custom/nightlight": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": 30,
+    "exec": "$HOME/.config/sway/scripts/light.sh status",
+    "on-click": "$HOME/.config/sway/scripts/light.sh toggle",
+    "signal": 7,
+    "tooltip": true
   },
   "battery": {
     "states": {
