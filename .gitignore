@@ -37,3 +37,8 @@ direnv/
 # --- Neovim ---
 .nvim/
 shada/
+
+# --- Tmux ---
+# Plugins are installed by TPM on demand (prefix + I),
+# so the vendored clones must not be committed.
+tmux/plugins/
