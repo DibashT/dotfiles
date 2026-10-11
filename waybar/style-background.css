@@ -89,7 +89,7 @@ window#waybar {
     border-style: solid;
     background-color: @base;
     opacity: 1;
-    border-radius: 10px;
+    border-radius: 6px;
     margin: 8px 0px 8px 8px;
     padding: 0px 10px;
 }
@@ -131,25 +131,25 @@ window#waybar {
    * -------------------------------------------------------------------------- */
 
 #mode {
-    border-radius: 10px;
+    border-radius: 6px;
     color: @mauve;
     margin-right: 5px;
 }
 
 #custom-cava-internal {
-    border-radius: 10px;
+    border-radius: 6px;
     color: @mauve;
 }
 
 #mpd {
-    border-radius: 10px;
+    border-radius: 6px;
     color: @mauve;
     margin-left: 5px;
     background-color: rgba(0, 0, 0, 0);
 }
 
 #mpd.2 {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 6px 0px 0px 6px;
     margin: 8px 0px 8px 6px;
     padding: 4px 12px 4px 10px;
 }
@@ -161,7 +161,7 @@ window#waybar {
 }
 
 #mpd.4 {
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 6px 6px 0px;
     margin: 8px 0px 8px 0px;
     padding: 4px 10px 4px 14px;
 }
@@ -174,7 +174,7 @@ window#waybar {
 }
 
 #window {
-    border-radius: 10px;
+    border-radius: 6px;
     color: @base;
     margin-left: 5px;
     margin-right: 5px;
@@ -186,14 +186,14 @@ window#waybar.empty #window {
 }
 
 #custom-swap {
-    border-radius: 10px;
+    border-radius: 6px;
     color: @base;
-    margin-left: 10px;
+    margin-left: 15px;
     background-color: @mauve;
 }
 
 #custom-background {
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 6px 6px 0px;
     background-color: @base;
     color: white;
     padding: 5px 14px 5px 5px;
@@ -202,20 +202,20 @@ window#waybar.empty #window {
 #clock {
     /* background-color:#a3be8c; */
     color: @sky;
-    border-radius: 10px;
+    border-radius: 6px;
     margin: 8px 10px;
 }
 
 #backlight {
     color: @yellow;
     /* border-bottom: 2px solid @yellow; */
-    border-radius: 10px 0 0 10px;
+    border-radius: 6px 0 0 6px;
 }
 
 #battery {
     color: @green;
     /* border-bottom: 2px solid #d8dee9; */
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 6px 6px 0;
     margin-right: 10px;
 }
 
@@ -276,7 +276,7 @@ window#waybar.empty #window {
 #network {
     color: @green;
     /* border-bottom: 2px solid @green; */
-    border-radius: 10px;
+    border-radius: 6px;
     margin-right: 5px;
 }
 
@@ -287,14 +287,14 @@ window#waybar.empty #window {
 
 #pulseaudio {
     color: @flamingo;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 6px 6px 0;
     margin-right: 10px;
     /* border-bottom: 2px solid @flamingo; */
 }
 
 #pulseaudio.muted {
     color: #3b4252;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 6px 6px 0;
     margin-right: 10px;
     /* border-bottom: 2px solid #3b4252; */
 }
@@ -302,7 +302,7 @@ window#waybar.empty #window {
 #temperature {
     color: @teal;
     /* border-bottom: 2px solid @teal; */
-    border-radius: 10px 0 0 10px;
+    border-radius: 6px 0 0 6px;
 }
 
 #temperature.critical {
@@ -313,29 +313,30 @@ window#waybar.empty #window {
 #idle_inhibitor {
     background-color: #ebcb8b;
     color: @base;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 #tray {
     /* background-color: @base; */
     margin: 8px 10px;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 #custom-launcher,
 #custom-power {}
 
 #custom-launcher {
-    background-color: shade(@base, 1.1);
-    color: @mauve;
-    border-radius: 0px 15px 0px 0px;
-    padding: 5px 10px 5px 10px;
+    background-color: @mauve;
+    color: @base;
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin-left: 15px;
 }
 
 #custom-power {
     color: @base;
     background-color: @red;
-    border-radius: 10px;
+    border-radius: 6px;
     margin-left: 5px;
     margin-right: 15px;
     padding: 5px 10px;
@@ -353,8 +354,18 @@ window#waybar.empty #window {
 #custom-keyboard-layout {
     color: @peach;
     /* border-bottom: 2px solid @peach; */
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 6px 6px 0;
     margin-right: 10px;
+}
+
+tooltip {
+    background: @base;
+    border: 1px solid @mauve;
+    border-radius: 6px;
+}
+
+tooltip label {
+    color: @text;
 }
 
 

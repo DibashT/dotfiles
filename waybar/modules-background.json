@@ -48,7 +48,6 @@
     "on-click": "mpc -q pause && mpc -q prev && mpc -q start"
   },
   "mpd#3": {
-    "interval": 1,
     "format": "{stateIcon}",
     "format-disconnected": "",
     "format-paused": "{stateIcon}",
@@ -157,11 +156,11 @@
     "on-click": "ghostty -e btop"
   },
   "temperature": {
-    "thermal-zone": 4,
-    // "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-    "critical-threshold": 80,
+    "thermal-zone": 5,
+    // "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "critical-threshold": 90,
     // "format-critical": "{temperatureC}°C  ",
-    "format": " {temperatureC}°C "
+    "format": " {temperatureC:>3}°C "
   },
   // Harddisc space used
   // "disk": {
@@ -228,7 +227,7 @@
     "format-icons": ["", "", "", "", ""]
   },
   "network": {
-    // "interface": "wlp2s0", // (Optional) To force the use of this interface
+    // "interface": "wlp0s20f3", // (Optional) To force the use of this interface
     "format": "⚠ Disabled",
     "format-wifi": " {essid}",
     // "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
