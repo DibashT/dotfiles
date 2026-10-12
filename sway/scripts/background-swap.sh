@@ -1,56 +1,44 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# Set the directory where the backgrounds are stored
+# Next-wallpaper switcher for sway.
+# Uses swaymsg so sway manages swaybg itself (no killall).
+
 BACKGROUND_DIR="$HOME/.config/backgrounds"
+SWAY_CONFIG="$HOME/.config/sway/config"
 
-# Get the list of backgrounds
+# No pictures -> stop with message
+shopt -s nullglob
 BACKGROUND_LIST=("$BACKGROUND_DIR"/*)
-echo "Background list: ${BACKGROUND_LIST[@]}"
+shopt -u nullglob
+if [[ ${#BACKGROUND_LIST[@]} -eq 0 ]]; then
+    notify-send "Background changed" "No files in $BACKGROUND_DIR"
+    exit 1
+fi
 
-# Read the Sway config line from a file
-config_line=$(grep -oP "(?<=output \* bg ).*(?= fill)" $HOME/.config/sway/config)
+# Read current wallpaper path from sway config:  output * bg <path> fill
+CURRENT_FULL=$(sed -n 's|^output \* bg \(.*\) fill$|\1|p' "$SWAY_CONFIG" | head -n 1)
 
-# Extract the wallpaper filename and extension using basename
-wallpaper=$(basename $config_line)
-
-# Print the wallpaper filename and extension
-echo $wallpaper
-
-# Print the wallpaper filename and extension
-echo "Current wallpaper : $wallpaper"
-# Get the path of the current background from the sway config file
-CURRENT_BACKGROUND=$HOME/.config/backgrounds/$wallpaper
-echo "Current background: $CURRENT_BACKGROUND"
-
-# Find the index of the current background in the list
+# Find where we are in the list (match by file name, safe with spaces)
+CURRENT_BASE="$(basename "$CURRENT_FULL")"
 CURRENT_INDEX=0
 for i in "${!BACKGROUND_LIST[@]}"; do
-    echo "Comparing ${BACKGROUND_LIST[$i]} with $CURRENT_BACKGROUND"
-    if [[ "${BACKGROUND_LIST[$i]}" == "${CURRENT_BACKGROUND}" ]]; then
+    if [[ "$(basename "${BACKGROUND_LIST[$i]}")" == "$CURRENT_BASE" ]]; then
         CURRENT_INDEX=$i
-        echo "Current index: $CURRENT_INDEX"
         break
     fi
 done
 
-# Calculate the index of the next background
+# Next file, back to start at the end
 NEXT_INDEX=$(( (CURRENT_INDEX + 1) % ${#BACKGROUND_LIST[@]} ))
-echo "Next index: $NEXT_INDEX"
-
-# Get the path of the next background
 NEXT_BACKGROUND="${BACKGROUND_LIST[$NEXT_INDEX]}"
 
-# Set the background to the next background
-#swaymsg output "*" bg "$NEXT_BACKGROUND" fill
-killall swaybg
-swaybg --output '*' --mode fill --image $NEXT_BACKGROUND &
+# Show it now (sway takes care of swaybg)
+swaymsg output '"*"' bg "$NEXT_BACKGROUND" fill >/dev/null
 
-# Save the current background in the sway config file
-sed -i "s|^output \* bg.*|output \* bg $NEXT_BACKGROUND fill|" "$HOME/.config/sway/config"
+# Save it so restart keeps the same picture (& escaped for sed)
+ESCAPED_NEXT="${NEXT_BACKGROUND//&/\\&}"
+sed -i "s|^output \* bg.*|output * bg $ESCAPED_NEXT fill|" "$SWAY_CONFIG"
 
-# Update the background file path in the startup script
-sed -i "s|^swaybg --output '.*' --mode fill --image .*|swaybg --output '*' --mode fill --image $NEXT_BACKGROUND \&|" "$HOME/.config/hypr/scripts/startup"
-
-# Send a notification with the new background name with an icon from the current background
-notify-send -i $NEXT_BACKGROUND "Background changed" "$(basename $NEXT_BACKGROUND)"
-
+# Small popup with new name
+notify-send -i "$NEXT_BACKGROUND" "Background changed" "$(basename "$NEXT_BACKGROUND")"

@@ -222,6 +222,8 @@
     "interval": 30,
     "exec": "$HOME/.config/sway/scripts/light.sh status",
     "on-click": "$HOME/.config/sway/scripts/light.sh toggle",
+    "on-scroll-up": "$HOME/.config/sway/scripts/light.sh warmer",
+    "on-scroll-down": "$HOME/.config/sway/scripts/light.sh cooler",
     "signal": 7,
     "tooltip": true
   },
