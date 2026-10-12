@@ -222,8 +222,6 @@
     "interval": 30,
     "exec": "$HOME/.config/sway/scripts/light.sh status",
     "on-click": "$HOME/.config/sway/scripts/light.sh toggle",
-    "on-scroll-up": "$HOME/.config/sway/scripts/light.sh warmer",
-    "on-scroll-down": "$HOME/.config/sway/scripts/light.sh cooler",
     "signal": 7,
     "tooltip": true
   },
@@ -276,14 +274,15 @@
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
   },
-  "custom/pacman": {
-    "format": " {}",
-    "interval": 7200, // every two hours
-    "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'", // # of updates and tooltip details
-    "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "ghostty -e sudo pacman -Syu", // update system
-    "signal": 8
-  },
+  // Disabled: checkupdates is Arch-only (not on Fedora). Left here for reference.
+  // "custom/pacman": {
+  //   "format": " {}",
+  //   "interval": 7200,
+  //   "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",
+  //   "exec-if": "exit 0",
+  //   "on-click": "ghostty -e sudo pacman -Syu",
+  //   "signal": 8
+  // },
   "custom/power": {
     "format": "⏻",
     "on-click": "wlogout -p layer-shell -b 3",

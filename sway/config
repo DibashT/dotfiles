@@ -8,7 +8,7 @@
 ######################################################################
 
 # set background
-output * bg /home/dibash/.config/backgrounds/mnt.jpg fill
+output * bg /home/dibash/.config/backgrounds/nord_mask.png fill
 
 # Define $mod before includes: system fragments (65-mode-passthrough.conf)
 # use it, and with single layered-include they load alphabetically before
