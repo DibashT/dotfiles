@@ -107,5 +107,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 # --- CURSOR ---
-# Force block cursor (overrides oh-my-zsh/theme defaults)
-echo -ne '\e[2 q'
+# Steady block, restored on every prompt (survives nvim/fzf/exit + Ghostty integration)
+precmd() { print -n '\e[2 q' }
+precmd

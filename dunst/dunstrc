@@ -1,0 +1,26 @@
+# Tokyo Night theme for dunst.
+# Theme ONLY: colors + font. Everything else (geometry, timeouts,
+# behavior) intentionally left at dunst defaults.
+# Palette matches sway/config.d/colors.
+
+[global]
+    font = Fira Sans SemiBold 10
+    frame_width = 2
+    # Slightly larger box than dunst defaults (300 / 8)
+    width = 350
+    padding = 12
+
+[urgency_low]
+    background = "#16161e"
+    foreground = "#a9b1d6"
+    frame_color = "#414868"
+
+[urgency_normal]
+    background = "#1a1b26"
+    foreground = "#c0caf5"
+    frame_color = "#7aa2f7"
+
+[urgency_critical]
+    background = "#1a1b26"
+    foreground = "#f7768e"
+    frame_color = "#f7768e"

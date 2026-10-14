@@ -26,6 +26,8 @@ scrollbar = never
 # keybind = alt+right=esc:[1;3C
 
 cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
 mouse-hide-while-typing = true
 title = " "
 custom-shader = ~/.config/ghostty/shaders/cursor.glsl

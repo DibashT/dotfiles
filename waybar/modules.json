@@ -159,8 +159,11 @@
      "on-click": "ghostty -e btop"
    },
   "temperature": {
-    "thermal-zone": 5,
-    // "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    // CPU package via stable device path (no hwmon/thermal-zone index).
+    // hwmon-path-abs omits the hwmon/hwmon# subdir, so it survives
+    // renumbering across boots/kernels. temp1_input = Package id 0.
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
     "critical-threshold": 90,
     // "format-critical": "{temperatureC}°C ",
     "format": "{temperatureC:>3}°C "
