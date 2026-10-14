@@ -9,6 +9,9 @@
     # Slightly larger box than dunst defaults (300 / 8)
     width = 350
     padding = 12
+    # Stock icon cap is 128; small bump so thumbnails fill the bigger box
+    # max_icon_size = 110
+    max_icon_size = 105
 
 [urgency_low]
     background = "#16161e"
