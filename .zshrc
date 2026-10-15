@@ -65,6 +65,19 @@ fi
 # --- ALIASES ---
 alias vim='nvim'
 alias cat='bat'
+
+# man pages through bat (syntax-highlighted; -c keeps colors intact)
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+
+# bat theme for man/cat/fzf previews: keep exactly one uncommented, then `reload`
+# export BAT_THEME="Colddark-Dark"
+# Custom mix: Kanagawa base + Rose Pine accents + Catppuccin pops
+# (~/.config/bat/themes/KanagawaMix.tmTheme, built with bat cache --build)
+# export BAT_THEME="KanagawaMix"
+# Custom mix 2: Kanagawa base + Catppuccin Mocha accents
+# (~/.config/bat/themes/KanagawaMocha.tmTheme, built with bat cache --build)
+export BAT_THEME="KanagawaMocha"
 alias zshconfig="nvim ~/.zshrc"
 alias reload="source ~/.zshrc"
 alias ls='ls --color=auto'

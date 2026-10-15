@@ -4,24 +4,37 @@
 # Palette matches sway/config.d/colors.
 
 [global]
-    font = Fira Sans SemiBold 10
+    font = JetBrainsMono Nerd Font 9
     frame_width = 2
-    # Slightly larger box than dunst defaults (300 / 8)
-    width = 350
-    padding = 12
-    # Stock icon cap is 128; small bump so thumbnails fill the bigger box
-    # max_icon_size = 110
-    max_icon_size = 105
+    # Stock dunst box dimensions
+    width = 300
+    padding = 6
+    # Dynamic height: compact when short, capped at 200 when long
+    height = (0, 300)
+    # Sit right under waybar (bar is 46px + 6px margin)
+    origin = top-right
+    offset = 10x10
+    # Icon size
+    min_icon_size = 80
+    max_icon_size = 80
+    # Bold title, normal body
+    markup = yes
+    format = "<b>%s</b>\n%b"
+    # Slim progress bar (volume popups carry int:value hints)
+    progress_bar_height = 6
+    progress_bar_frame_width = 1
 
 [urgency_low]
     background = "#16161e"
     foreground = "#a9b1d6"
     frame_color = "#414868"
+    timeout = 5
 
 [urgency_normal]
     background = "#1a1b26"
     foreground = "#c0caf5"
     frame_color = "#7aa2f7"
+    timeout = 5
 
 [urgency_critical]
     background = "#1a1b26"
