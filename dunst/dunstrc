@@ -11,9 +11,9 @@
     padding = 6
     # Dynamic height: compact when short, capped at 200 when long
     height = (0, 300)
-    # Sit right under waybar (bar is 46px + 6px margin)
+    # Top-right, aligned to window/screen border (X=gap from right, Y=gap from top)
     origin = top-right
-    offset = 10x10
+    offset = 8x8
     # Icon size
     min_icon_size = 80
     max_icon_size = 80
@@ -21,22 +21,26 @@
     markup = yes
     format = "<b>%s</b>\n%b"
     # Slim progress bar (volume popups carry int:value hints)
-    progress_bar_height = 6
-    progress_bar_frame_width = 1
+    progress_bar_height = 7
+    # progress_bar_frame_width = 1
+    # progress_bar_corner_radius = 3
 
 [urgency_low]
     background = "#16161e"
     foreground = "#a9b1d6"
     frame_color = "#414868"
+    highlight = "#bb9af7"
     timeout = 5
 
 [urgency_normal]
     background = "#1a1b26"
     foreground = "#c0caf5"
-    frame_color = "#7aa2f7"
+    frame_color = "#bb9af7"
+    highlight = "#bb9af7"
     timeout = 5
 
 [urgency_critical]
     background = "#1a1b26"
     foreground = "#f7768e"
     frame_color = "#f7768e"
+    highlight = "#f7768e"

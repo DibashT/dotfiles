@@ -27,7 +27,7 @@ configuration {
     background-alt:              #2A2A37; /* sumiInk3 (Search bar & buttons) */
     foreground:                  #DCD7BA; /* fujiWhite (Text) */
     selected:                    #2D4F67; /* waveBlue2 (Selected items) */
-    active:                      #7AA2F7; /* sway focused blue (matched) */
+    active:                      #BB9AF7; /* sway focused magenta (matched) */
     urgent:                      #E82424; /* samuraiRed (Urgent states) */
 }
 

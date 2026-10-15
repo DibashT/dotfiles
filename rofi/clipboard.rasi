@@ -8,7 +8,7 @@ configuration {
   background:     #1F1F28;
   background-alt: #2A2A37;
   foreground:     #DCD7BA;
-  active:         #7AA2F7;
+  active:         #BB9AF7;
   selected:       #2D4F67;
   urgent:         #E82424;
 }
