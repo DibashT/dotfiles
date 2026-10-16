@@ -89,7 +89,7 @@ window#waybar {
     background-color: @base;
     opacity: 1;
     border-radius: 10px;
-    margin: 4px 0px 4px 6px;
+    margin: 4px 0px 4px 4px;
     padding: 2px 4px;
 }
 
@@ -119,7 +119,7 @@ window#waybar {
 #custom-launcher,
 #custom-system,
 #mpd {
-    padding: 3px 8px;
+    padding: 3px 4px;
     border-style: solid;
     background-color: shade(@base, 1);
     opacity: 1;
@@ -209,7 +209,7 @@ window#waybar.empty #window {
     /* background-color:#a3be8c; */
     color: @sky;
     border-radius: 10px;
-    margin: 4px 6px;
+    margin: 4px 4px;
 }
 
 #backlight {
@@ -223,7 +223,7 @@ window#waybar.empty #window {
     /* border-bottom: 2px solid @sky; */
     /* border-bottom: 2px solid #d8dee9; */
     border-radius: 0 10px 10px 0;
-    margin-right: 6px;
+    margin-right: 4px;
 }
 
 #battery.charging {
@@ -296,14 +296,14 @@ window#waybar.empty #window {
 #pulseaudio {
     color: @flamingo;
     border-radius: 0 10px 10px 0;
-    margin-right: 6px;
+    margin-right: 4px;
     /* border-bottom: 2px solid @flamingo; */
 }
 
 #pulseaudio.muted {
     color: #3b4252;
     border-radius: 0 10px 10px 0;
-    margin-right: 6px;
+    margin-right: 4px;
     /* border-bottom: 2px solid #3b4252; */
 }
 
@@ -326,7 +326,7 @@ window#waybar.empty #window {
 
 #tray {
     /* background-color: @base; */
-    margin: 4px 6px;
+    margin: 4px 4px;
     border-radius: 10px;
 }
 
@@ -337,7 +337,7 @@ window#waybar.empty #window {
     background-color: @mauve;
     color: @base;
     border-radius: 10px;
-    padding: 3px 8px;
+    padding: 3px 4px;
     margin-left: 8px;
 }
 
@@ -345,9 +345,9 @@ window#waybar.empty #window {
     color: @base;
     background-color: @red;
     border-radius: 10px;
-    margin-left: 5px;
+    margin-left: 4px;
     margin-right: 8px;
-    padding: 3px 8px;
+    padding: 3px 4px;
 }
 
 /* #window { */
@@ -361,7 +361,7 @@ window#waybar.empty #window {
     color: @peach;
     /* border-bottom: 2px solid @peach; */
     border-radius: 0 10px 10px 0;
-    margin-right: 6px;
+    margin-right: 4px;
 }
 
 tooltip {
