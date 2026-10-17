@@ -34,8 +34,8 @@
     "format-disconnected": "⚠  Disconnected",
     "format-stopped": " Not Playing",
     "on-click": "mpc toggle",
-    "on-scroll-up": "mpc -q pause && mpc -q next && mpc -q start",
-    "on-scroll-down": "mpc -q pause && mpc -q prev && mpc -q start",
+    "on-scroll-up": "mpc -q pause && mpc -q prev && mpc -q start",
+    "on-scroll-down": "mpc -q pause && mpc -q next && mpc -q start",
     "state-icons": {
       "playing": "",
       "paused": ""
@@ -73,7 +73,7 @@
   // Declutter: Bg swap pill removed (Super+Shift+w keybind still works). Uncomment to restore.
 //   "custom/swap": {
 //     "on-click": "~/.config/waybar/scripts/swap.sh",
-//     "format": "Bg  ",
+//     "format": "Bg  ",
 //     "tooltip": true,
 //     "tooltip-format": "Swap between waybar Themes"
 //   },
@@ -102,7 +102,8 @@
             "(.*) Microsoft Teams": "$1"
         },
         "separate-outputs": true,
-    "format": "<span color=\"#24273a\" size=\"small\">{}</span>"
+      "format": "<span color=\"#24273a\" size=\"small\">{}</span>"
+      // or size=\"larger\", size=\"x-large\", etc.
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -116,7 +117,7 @@
     "spacing": 4
   },
   "clock": {
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
@@ -138,11 +139,10 @@
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down"
     },
-    // 12 hour format
-    // "format": "{:%a %d %b | %I : %M %p}", 
+      //12 hour format
+     //"format": "{:%a %d %b | %I : %M %p}", 
     "format": "{:%a %d %b | %H : %M}",
     "format-alt": " {:%Y -%m -%d |  %H : %M : %S}",
-    "interval": 1
   },
 
   // System
@@ -165,30 +165,23 @@
     "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
     "input-filename": "temp1_input",
     "critical-threshold": 90,
-    // "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC:>3}°C "
+    // "format-critical": "{temperatureC}°C  ",
+    "format": " {temperatureC:>3}°C "
   },
   // Harddisc space used
   // "disk": {
   //   "interval": 30,
-  //   "format": "{percentage_used}% ",
+  //   "format": " {percentage_used}% ",
   //   "path": "/",
   //   //"on-click": "ghostty -e htop"
   // }, 
-  // // Add this new module for HDD
-  // "disk#hdd": {
-  //   "interval": 30,
-  //   "format": "{percentage_used}% ",
-  //   "path": "/mnt/storage"
-  // },
-// SSD (Root partition)
+  // SSD (Root partition)
    "disk": {
      "interval": 30,
      "format": " {percentage_used}% ",
      "path": "/",
      "tooltip-format": "SSD: {used} / {total} used"
    },
-
   // HDD (Storage drive)  
    "disk#hdd": {
      "interval": 30,
@@ -216,14 +209,13 @@
      },
   "backlight": {
     // "device": "acpi_video1",
-    "format": "{icon} {percent:>3}%",
+    "format": "{icon} {percent: >3}%",
     // "format-icons": ["", ""],
         "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-scroll-down": "brightnessctl -c backlight set 5%-",
     // "on-scroll-down": "light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob",
     "on-scroll-up": "brightnessctl -c backlight set +5%",
     // "on-scroll-up": "light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob"
-    "on-click": ""
   },
   "custom/nightlight": {
     "format": "{}",
@@ -240,34 +232,34 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}{capacity:>3}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-alt": "{icon}{time}",
+    "format": "{icon}{capacity: >3}%",
+    "format-charging": " {capacity:>3}%",
+    "format-plugged": " {capacity:>3}%",
+    "format-alt": "{icon} {time}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
     "format-icons": ["", "", "", "", ""]
   },
   "network": {
     // "interface": "wlp0s20f3", // (Optional) To force the use of this interface
-    "format": "⚠Disabled",
+    "format": "⚠ Disabled",
     "format-wifi": " {essid}",
     // "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
-    "format-ethernet": " Wired",
-    "format-disconnected": "⚠Disconnected",
-    "tooltip-format": "{ifname} via {gwaddri}",
+    "format-ethernet": "  Wired",
+    "format-disconnected": "⚠ Disconnected",
+    "tooltip-format": " {ifname} via {gwaddri}",
     "tooltip-format-wifi": " {essid} ({signalStrength}%)",
     "tooltip-format-ethernet": " {ifname} ({ipaddr}/{cidr})",
-    "tooltip-format-disconnected": "⚠Disconnected",
+    "tooltip-format-disconnected": "⚠ Disconnected",
     //"on-click": "ghostty -e nmtui",
     //"on-click": "/usr/bin/ghostty -e nmtui",
     "on-click": "nm-connection-editor"
   },
   "pulseaudio": {
-    // "scroll-step": 5,
+    // "scroll-step": 1,
     "format": "{icon}{volume: >3}%",
     "format-bluetooth": "{icon}{volume: >3}%",
-    "format-muted": " muted",
+    "format-muted": "",
     "format-icons": {
       "headphones": "",
       "handsfree": "",
@@ -299,7 +291,8 @@
     "tooltip": false
   },
   "custom/launcher": {
-    "format": "",
+    "format": ""  ,
+    // "format": "󰣇"  ,
     // "format": "󰠦"  ,
     // "on-click": "rofi -show drun -replace",
     "on-click": "rofi -show drun -theme ~/.config/rofi/launchers/launcher-1.rasi -replace",

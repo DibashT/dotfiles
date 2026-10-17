@@ -1,7 +1,7 @@
 {
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
-  "height": 38,
+  "height": 40,
   "margin": "2 0 0 0",
   // "margin": "2 0 0 0",
   //"width": 1350, // Waybar width
@@ -39,7 +39,7 @@
 
 
     // Load Modules
-    "include": ["~/.config/waybar/modules-background.json"],
+    "include": ["~/.config/waybar/modules.json"],
 
   // Modules configuration
 
