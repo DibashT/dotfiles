@@ -2,7 +2,8 @@
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
 (
-    address: "127.0.0.1:6600",
+    // Unix socket, not TCP: youtube support (addyt/searchyt) requires it
+    address: "~/.config/mpd/socket",
     password: None,
     //theme: Some("~/.config/rmpc/themes/theme.ron"),
     theme: Some("theme.ron"),

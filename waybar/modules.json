@@ -119,17 +119,18 @@
   "clock": {
     "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
+      // Literal palette hexes — Pango markup can't use @vars; values mirror colors.css.
       "mode": "month",
       "mode-mon-col": 3,
       "weeks-pos": "right",
       "on-scroll": 1,
       "on-click-right": "mode",
       "format": {
-	"months": "<span color='#bb9af7'><b>{}</b></span>",  // Purple
-	"days": "<span color='#7aa2f7'><b>{}</b></span>",    // Blue
-	"weeks": "<span color='#9ece6a'><b>W{}</b></span>",  // Green
-	"weekdays": "<span color='#e0af68'><b>{}</b></span>",// Yellow
-	"today": "<span background='#2ac3de' color='#1a1b26'><b><u>{}</u></b></span>" // Cyan background with dark text
+	"months": "<span color='#c6a0f6'><b>{}</b></span>",  // Purple
+	"days": "<span color='#8aadf4'><b>{}</b></span>",    // Blue
+	"weeks": "<span color='#a6da95'><b>W{}</b></span>",  // Green
+	"weekdays": "<span color='#eed49f'><b>{}</b></span>",// Yellow
+	"today": "<span background='#91d7e3' color='#181926'><b><u>{}</u></b></span>" // Cyan background with dark text
       }
     },
     "actions": {
@@ -142,7 +143,7 @@
       //12 hour format
      //"format": "{:%a %d %b | %I : %M %p}", 
     "format": "{:%a %d %b | %H : %M}",
-    "format-alt": " {:%Y -%m -%d |  %H : %M : %S}",
+    "format-alt": " {:%Y -%m -%d |  %H : %M : %S}"
   },
 
   // System
@@ -168,13 +169,6 @@
     // "format-critical": "{temperatureC}°C  ",
     "format": " {temperatureC:>3}°C "
   },
-  // Harddisc space used
-  // "disk": {
-  //   "interval": 30,
-  //   "format": " {percentage_used}% ",
-  //   "path": "/",
-  //   //"on-click": "ghostty -e htop"
-  // }, 
   // SSD (Root partition)
    "disk": {
      "interval": 30,
@@ -214,7 +208,7 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-scroll-down": "brightnessctl -c backlight set 5%-",
     // "on-scroll-down": "light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob",
-    "on-scroll-up": "brightnessctl -c backlight set +5%",
+    "on-scroll-up": "brightnessctl -c backlight set +5%"
     // "on-scroll-up": "light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob"
   },
   "custom/nightlight": {
@@ -275,15 +269,6 @@
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
   },
-  // Disabled: checkupdates is Arch-only (not on Fedora). Left here for reference.
-  // "custom/pacman": {
-  //   "format": " {}",
-  //   "interval": 7200,
-  //   "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",
-  //   "exec-if": "exit 0",
-  //   "on-click": "ghostty -e sudo pacman -Syu",
-  //   "signal": 8
-  // },
   "custom/power": {
     "format": "⏻",
     "on-click": "wlogout -p layer-shell -b 3",

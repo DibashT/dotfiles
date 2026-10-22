@@ -111,7 +111,6 @@ window#waybar {
 #disk,
 #idle_inhibitor,
 #temperature,
-#custom-keyboard-layout,
 #backlight,
 #network,
 #pulseaudio,
@@ -360,13 +359,6 @@ window#waybar.empty #window {
 /*     background-color: @mauve; */
 /* } */
 
-#custom-keyboard-layout {
-    color: @peach;
-    /* border-bottom: 2px solid @peach; */
-    border-radius: 0 10px 10px 0;
-    margin-right: 4px;
-}
-
 tooltip {
     background: @base;
     border: 1px solid @mauve;
@@ -376,7 +368,7 @@ tooltip {
 
 tooltip label {
     color: @text;
-    font-size: 11px;
+    font-size: 12px;
     padding: 0;
 }
 
