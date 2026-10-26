@@ -4,12 +4,12 @@ scaling=fill
 #color=#232136
 
 # Layout text colors
-layout-bg-color=#00000000
-layout-border-color=#00000000
+layout-bg-color=#1F1F28cc
+layout-border-color=#bb9af7
 layout-text-color=#e0def4
 
 # Text color
-text-color=#bb9af7
+text-color=#e0def4
 text-clear-color=#9ccfd8
 text-caps-lock-color=#f6c177
 text-ver-color=#c4a7e7
@@ -25,18 +25,18 @@ caps-lock-key-hl-color=#f6c177
 separator-color=#00000000
 
 # Inside of the indicator
-inside-color=#bb9af755
-inside-clear-color=#9ccfd855
-inside-caps-lock-color=#f6c17755
-inside-ver-color=#c4a7e755
-inside-wrong-color=#eb6f9255
+inside-color=#1F1F28e6
+inside-clear-color=#1F1F28e6
+inside-caps-lock-color=#1F1F28e6
+inside-ver-color=#1F1F28e6
+inside-wrong-color=#1F1F28e6
 
 # Line between the inside and ring
-line-color=#bb9af711
-line-clear-color=#9ccfd811
-line-caps-lock-color=#f6c17711
-line-ver-color=#c4a7e711
-line-wrong-color=#eb6f9211
+line-color=#1F1F28
+line-clear-color=#1F1F28
+line-caps-lock-color=#1F1F28
+line-ver-color=#1F1F28
+line-wrong-color=#1F1F28
 
 # Indicator ring
 ring-color=#bb9af7aa
