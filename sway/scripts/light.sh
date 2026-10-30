@@ -50,7 +50,7 @@ cmd_toggle() {
 
 cmd_status() {
   if is_on; then
-    printf '{"text":" ","tooltip":"Night light on (%sK)","class":"on"}\n' "$LOW"
+    printf '{"text":"  ","tooltip":"Night light on (%sK)","class":"on"}\n' "$LOW"
   else
     printf '{"text":" ","tooltip":"Night light off","class":"off"}\n'
   fi

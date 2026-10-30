@@ -5,4 +5,15 @@ selected=$(cliphist list | awk -F'\t' '{ gsub(/\t/, " ", $2); pad = 6 - length($
   | rofi -dmenu -i -markup-rows -theme ~/.config/rofi/clipboard.rasi -mesg 'Clipboard')
 [ -z "$selected" ] && exit 0
 id=$(printf '%s' "$selected" | awk -F':' '{ gsub(/<[^>]*>/, "", $1); gsub(/ /, "", $1); print $1 }')
-cliphist decode "$id" | wl-copy && wtype -M ctrl -M shift -k v -m ctrl -m shift
+
+# Preserve the stored MIME type instead of letting wl-copy guess. Images are
+# copied only: Ctrl+Shift+V is a terminal shortcut and cannot paste images.
+mime=$(cliphist decode "$id" | file --mime-type -b -)
+case "$mime" in
+  image/*)
+    cliphist decode "$id" | wl-copy --type "$mime"
+    ;;
+  *)
+    cliphist decode "$id" | wl-copy && wtype -M ctrl -M shift -k v -m ctrl -m shift
+    ;;
+esac

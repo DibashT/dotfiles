@@ -6,9 +6,13 @@
 [global]
     font = JetBrainsMono Nerd Font 9
     frame_width = 2
-    # Stock dunst box dimensions
+    # Compact box. padding is vertical-only in dunst >= 1.9;
+    # horizontal is set separately for a tighter left/right inset.
     width = 300
     padding = 6
+    horizontal_padding = 6
+    # Keep the icon/text gap comfortable, independent of edge padding
+    text_icon_padding = 6
     # Dynamic height: compact when short, capped at 200 when long
     height = (0, 300)
     # Top-right, aligned to window/screen border (X=gap from right, Y=gap from top)
